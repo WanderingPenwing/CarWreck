@@ -1,0 +1,56 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkrvblbfk6oc4"]
+
+[ext_resource type="Script" path="res://scripts/menu/sound_settings.gd" id="1_f63nn"]
+[ext_resource type="PackedScene" uid="uid://cchvtdd4kf3vh" path="res://prefabs/menu/volume_selector.tscn" id="1_wshi6"]
+[ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="2_bwaqe"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Margins" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="Layout" type="VBoxContainer" parent="Margins"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="Bus selection" type="VBoxContainer" parent="Margins/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 30
+script = ExtResource("1_f63nn")
+
+[node name="Master" parent="Margins/Layout/Bus selection" instance=ExtResource("1_wshi6")]
+layout_mode = 2
+title = "Master"
+bus = "master"
+
+[node name="Sfx" parent="Margins/Layout/Bus selection" instance=ExtResource("1_wshi6")]
+layout_mode = 2
+title = "Sounds"
+bus = "sfx"
+
+[node name="Music" parent="Margins/Layout/Bus selection" instance=ExtResource("1_wshi6")]
+layout_mode = 2
+title = "Music"
+bus = "music"
+
+[node name="Main Menu" parent="Margins/Layout" instance=ExtResource("2_bwaqe")]
+layout_mode = 2
+size_flags_vertical = 8
+button_title = "Main Menu"
+
+[connection signal="activate" from="Margins/Layout/Main Menu" to="Margins/Layout/Bus selection" method="_on_main_menu_activate"]

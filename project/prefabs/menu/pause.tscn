@@ -1,0 +1,63 @@
+[gd_scene load_steps=5 format=3 uid="uid://c3ox532uyluc0"]
+
+[ext_resource type="Script" path="res://scripts/menu/pause.gd" id="1_a52wl"]
+[ext_resource type="Theme" uid="uid://cqr0axdb4bodp" path="res://assets/themes/base.tres" id="2_a0456"]
+[ext_resource type="Script" path="res://scripts/menu/pause_buttons.gd" id="3_1ptn8"]
+[ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="3_p6e6c"]
+
+[node name="Pause" type="CanvasLayer" node_paths=PackedStringArray("ResumeButton") groups=["pause_menu"]]
+process_mode = 3
+layer = 3
+script = ExtResource("1_a52wl")
+ResumeButton = NodePath("Start Screen/VSplitContainer/Buttons/Resume")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(-18, -16)
+color = Color(0, 0, 0, 0.290196)
+
+[node name="Start Screen" type="MarginContainer" parent="."]
+layout_direction = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VSplitContainer" type="VSplitContainer" parent="Start Screen"]
+layout_mode = 2
+split_offset = 220
+
+[node name="Label" type="Label" parent="Start Screen/VSplitContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("2_a0456")
+text = "Game Paused"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Start Screen/VSplitContainer"]
+process_mode = 3
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 65
+alignment = 1
+script = ExtResource("3_1ptn8")
+
+[node name="Resume" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("3_p6e6c")]
+layout_mode = 2
+button_title = "Resume"
+
+[node name="Options" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("3_p6e6c")]
+layout_mode = 2
+button_title = "Options"
+
+[node name="Quit" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("3_p6e6c")]
+layout_mode = 2
+button_title = "Quit"
+
+[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Resume" to="Start Screen/VSplitContainer/Buttons" method="_on_resume_activate"]
+[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Quit" to="Start Screen/VSplitContainer/Buttons" method="_on_quit_activate"]

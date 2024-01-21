@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bthaq5qtoww4j"]
+
+[ext_resource type="PackedScene" uid="uid://c3ox532uyluc0" path="res://prefabs/menu/pause.tscn" id="1_kaauw"]
+[ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
+[ext_resource type="Script" path="res://scripts/levels/example.gd" id="1_tcxpx"]
+
+[node name="LevelZero" type="Node2D" node_paths=PackedStringArray("Debug")]
+script = ExtResource("1_tcxpx")
+Debug = NodePath("Debug Ui")
+
+[node name="Game" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="Game"]
+modulate = Color(1, 0.541176, 0.541176, 1)
+offset_left = 719.0
+offset_top = 350.0
+offset_right = 876.0
+offset_bottom = 405.0
+theme_override_font_sizes/font_size = 40
+text = "Press F3"
+
+[node name="Debug Ui" parent="." instance=ExtResource("1_qc15p")]
+
+[node name="Pause" parent="." instance=ExtResource("1_kaauw")]
+visible = false

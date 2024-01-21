@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://4eq13hvxl7or"]
+
+[ext_resource type="Script" path="res://scripts/ui/debug_infos.gd" id="1_e1at0"]
+[ext_resource type="Script" path="res://scripts/ui/drawings.gd" id="2_jjr0w"]
+
+[node name="Debug Ui" type="CanvasLayer" node_paths=PackedStringArray("DebugLeft", "DebugRight", "DrawingBoard")]
+script = ExtResource("1_e1at0")
+DebugLeft = NodePath("Margin/Split/Debug Left")
+DebugRight = NodePath("Margin/Split/Debug Right")
+DrawingBoard = NodePath("DrawingBoard")
+
+[node name="Margin" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="Split" type="HSplitContainer" parent="Margin"]
+layout_mode = 2
+split_offset = 760
+
+[node name="Debug Left" type="RichTextLabel" parent="Margin/Split"]
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="Debug Right" type="RichTextLabel" parent="Margin/Split"]
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="DrawingBoard" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_jjr0w")

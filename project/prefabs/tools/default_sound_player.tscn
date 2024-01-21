@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://hw2hb3mcbrob"]
+
+[ext_resource type="Script" path="res://scripts/tools/default_sound_player.gd" id="1_jpxon"]
+
+[node name="Default Sound Player" type="AudioStreamPlayer"]
+script = ExtResource("1_jpxon")
+
+[connection signal="finished" from="." to="." method="_on_finished"]
