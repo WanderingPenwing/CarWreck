@@ -20,6 +20,21 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Start Screen"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Start Screen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("1_nqq7b")
+theme_override_colors/font_color = Color(0.701961, 0.701961, 0.701961, 1)
+theme_override_font_sizes/font_size = 20
+text = "Press F11 to toggle fullscreen"
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Start Screen"]
 layout_mode = 2
@@ -29,6 +44,7 @@ split_offset = 220
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_nqq7b")
+theme_override_font_sizes/font_size = 60
 text = "Game Title"
 horizontal_alignment = 1
 

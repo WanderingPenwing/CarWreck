@@ -22,6 +22,7 @@ var selected : bool = false
 var disabled : bool = false # Ability to disable for the level selection (for example)
 var time_since_selected : float = 0.0 # To avoid intant activations
 var Buttons : Array[Node] = []
+var button_was_activated : bool = false # to activate only once for long inputs
 
 
 
@@ -73,6 +74,9 @@ func _process(delta : float) -> void :
 		return
 	
 	if Input.is_action_just_pressed("ui_accept") : # Click
+		if button_was_activated :
+			return
+		button_was_activated = true
 		activate.emit(button_title)
 		SoundManager.play_sound(bip, SoundManager, "Sfx")
 		var tween : Tween = create_tween() # Click animation
@@ -80,11 +84,13 @@ func _process(delta : float) -> void :
 		tween.tween_property(self, "scale", HOVER_SCALE, ANIMATION_TIME)
 		return
 	
-	if Input.is_action_just_pressed("ui_down") :
+	button_was_activated = false
+	
+	if Input.is_action_just_pressed("menu_next") :
 		become_unselected()
 		next.become_selected()
 	
-	if Input.is_action_just_pressed("ui_up") :
+	if Input.is_action_just_pressed("menu_previous") :
 		become_unselected()
 		previous.become_selected()
 

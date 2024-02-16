@@ -13,7 +13,8 @@ var volume : Dictionary = {
 	"sfx" : 50,
 	"music" : 50 
 }
-
+var fullscreen : bool = false
+var fullscreen_was_pressed : bool = false
 
 
 func _ready() -> void :
@@ -58,3 +59,24 @@ func update_volume() -> void :
 	AudioServer.set_bus_volume_db(master_bus,linear_to_db(volume["master"]/200.0)) # Sound is too loud by default
 	AudioServer.set_bus_volume_db(sfx_bus,linear_to_db(volume["sfx"]/100.0))
 	AudioServer.set_bus_volume_db(music_bus,linear_to_db(volume["music"]/100.0))
+
+
+
+func _input(event : InputEvent) -> void :
+	if not event is InputEventKey :
+		return
+	if event.is_action_pressed("fullscreen") :
+		if !fullscreen_was_pressed :
+			toggle_fullscreen()
+		fullscreen_was_pressed = true
+	else :
+		fullscreen_was_pressed = false
+
+
+
+func toggle_fullscreen() -> void :
+	fullscreen = !fullscreen
+	if fullscreen :
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
+	else :
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
