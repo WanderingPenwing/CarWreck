@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=16 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://scripts/player/camera.gd" id="3_2850o"]
 [ext_resource type="PackedScene" uid="uid://b6ed4w5s5ot5c" path="res://scenes/start_screen.tscn" id="4_ho165"]
 [ext_resource type="Texture2D" uid="uid://cqdk55leyqiej" path="res://assets/images/menu/arrow.png" id="6_eocjf"]
+[ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="7_35800"]
 
 [sub_resource type="Environment" id="Environment_8qcyu"]
 background_mode = 1
@@ -54,7 +55,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.0645772, 3.14159, 0), Vector3(-0.634654, 3.14159, 1.01197e-07)]
+"values": [Vector3(-0.0645772, 3.14159, 0), Vector3(-0.436332, 3.14159, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -66,7 +67,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.438079, 0.406003, 0.113595), Vector3(0.438079, 0.0947933, 0.153439)]
+"values": [Vector3(0.438079, 0.406003, 0.113595), Vector3(0.438, 0.095, 0.2)]
 }
 
 [sub_resource type="Animation" id="Animation_lmyys"]
@@ -125,7 +126,7 @@ tracks/1/keys = {
 "values": [Vector3(0.438079, 0.406003, 0.113595), Vector3(0.0978658, 0.406003, 0.113595)]
 }
 
-[sub_resource type="Animation" id="Animation_s8uu2"]
+[sub_resource type="Animation" id="Animation_eqnxb"]
 resource_name = "up"
 length = 0.7
 tracks/0/type = "value"
@@ -138,7 +139,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(-0.634654, 3.14159, 1.01197e-07), Vector3(-0.0645772, 3.14159, 0)]
+"values": [Vector3(-0.436332, 3.14159, 0), Vector3(-0.0645772, 3.14159, 0)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -150,7 +151,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0.438079, 0.0947933, 0.153439), Vector3(0.438079, 0.406003, 0.113595)]
+"values": [Vector3(0.438, 0.095, 0.2), Vector3(0.438079, 0.406003, 0.113595)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_p5tel"]
@@ -159,7 +160,7 @@ _data = {
 "down": SubResource("Animation_t7n8k"),
 "left": SubResource("Animation_lmyys"),
 "right": SubResource("Animation_sc2pl"),
-"up": SubResource("Animation_s8uu2")
+"up": SubResource("Animation_eqnxb")
 }
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_31s8y"]
@@ -186,13 +187,6 @@ up_arrow = NodePath("ui/up")
 down_arrow = NodePath("ui/down")
 animation = NodePath("../animation")
 
-[node name="Debug Ui" parent="car/camera" instance=ExtResource("1_qc15p")]
-
-[node name="Menu" type="CanvasLayer" parent="car/camera"]
-
-[node name="Start Screen" parent="car/camera/Menu" node_paths=PackedStringArray("Ui") instance=ExtResource("4_ho165")]
-Ui = NodePath("../../ui")
-
 [node name="ui" type="CanvasLayer" parent="car/camera"]
 visible = false
 
@@ -203,6 +197,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="car/camera/ui/Control"]
 layout_mode = 1
@@ -281,10 +276,20 @@ texture_hover = ExtResource("6_eocjf")
 texture_disabled = ExtResource("6_eocjf")
 texture_focused = ExtResource("6_eocjf")
 
+[node name="Debug Ui" parent="car/camera" instance=ExtResource("1_qc15p")]
+
+[node name="Menu" type="CanvasLayer" parent="car/camera"]
+
+[node name="Start Screen" parent="car/camera/Menu" node_paths=PackedStringArray("Ui") instance=ExtResource("4_ho165")]
+Ui = NodePath("../../ui")
+
 [node name="animation" type="AnimationPlayer" parent="car"]
 libraries = {
 "": SubResource("AnimationLibrary_p5tel")
 }
+
+[node name="3D button" parent="car" instance=ExtResource("7_35800")]
+transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.0274072, -0.0426728, 0.704249)
 
 [node name="light" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.694357, 0.719631, 0, -0.719631, 0.694357, 0, 2.35604, 1.0578)

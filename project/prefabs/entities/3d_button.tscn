@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3euo8tp4chxy"]
+
+[ext_resource type="Script" path="res://scripts/player/3D button.gd" id="1_3b7lm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_medbo"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_j066m"]
+
+[node name="3D button" type="Node3D"]
+script = ExtResource("1_3b7lm")
+
+[node name="detection" type="Area3D" parent="."]
+
+[node name="detection sphere" type="CollisionShape3D" parent="detection"]
+shape = SubResource("SphereShape3D_medbo")
+
+[node name="display" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_j066m")
+
+[connection signal="input_event" from="detection" to="." method="_on_detection_input_event"]
