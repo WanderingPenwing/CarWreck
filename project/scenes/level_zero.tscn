@@ -1,25 +1,301 @@
-[gd_scene load_steps=4 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=15 format=3 uid="uid://bthaq5qtoww4j"]
 
-[ext_resource type="PackedScene" uid="uid://c3ox532uyluc0" path="res://prefabs/menu/pause.tscn" id="1_kaauw"]
+[ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
-[ext_resource type="Script" path="res://scripts/levels/example.gd" id="1_tcxpx"]
+[ext_resource type="PackedScene" uid="uid://2nalpqnagvh2" path="res://prefabs/models/car.tscn" id="2_cyq8t"]
+[ext_resource type="Script" path="res://scripts/player/camera.gd" id="3_2850o"]
+[ext_resource type="PackedScene" uid="uid://b6ed4w5s5ot5c" path="res://scenes/start_screen.tscn" id="4_ho165"]
+[ext_resource type="Texture2D" uid="uid://cqdk55leyqiej" path="res://assets/images/menu/arrow.png" id="6_eocjf"]
 
-[node name="LevelZero" type="Node2D" node_paths=PackedStringArray("Debug")]
-script = ExtResource("1_tcxpx")
-Debug = NodePath("Debug Ui")
+[sub_resource type="Environment" id="Environment_8qcyu"]
+background_mode = 1
+background_color = Color(0.568627, 0.937255, 1, 1)
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 3.53
+reflected_light_source = 1
 
-[node name="Game" type="CanvasLayer" parent="."]
+[sub_resource type="Animation" id="Animation_8776l"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../car/camera:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.0651356, -3.14159, -5.83183e-09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../car/camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.438079, 0.406003, 0.113595)]
+}
 
-[node name="Label" type="Label" parent="Game"]
-modulate = Color(1, 0.541176, 0.541176, 1)
-offset_left = 719.0
-offset_top = 350.0
-offset_right = 876.0
-offset_bottom = 405.0
-theme_override_font_sizes/font_size = 40
-text = "Press F3"
+[sub_resource type="Animation" id="Animation_t7n8k"]
+resource_name = "down"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../car/camera:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0645772, 3.14159, 0), Vector3(-0.634654, 3.14159, 1.01197e-07)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../car/camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.438079, 0.406003, 0.113595), Vector3(0.438079, 0.0947933, 0.153439)]
+}
 
-[node name="Debug Ui" parent="." instance=ExtResource("1_qc15p")]
+[sub_resource type="Animation" id="Animation_lmyys"]
+resource_name = "left"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../car/camera:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0651357, 0.368335, -1.12459e-09), Vector3(-0.0645772, 3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../car/camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.0978658, 0.406003, 0.113595), Vector3(0.438079, 0.406003, 0.113595)]
+}
 
-[node name="Pause" parent="." instance=ExtResource("1_kaauw")]
+[sub_resource type="Animation" id="Animation_sc2pl"]
+resource_name = "right"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../car/camera:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.0645772, 3.14159, 0), Vector3(-0.0651357, 0.368335, -1.12459e-09)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../car/camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.438079, 0.406003, 0.113595), Vector3(0.0978658, 0.406003, 0.113595)]
+}
+
+[sub_resource type="Animation" id="Animation_s8uu2"]
+resource_name = "up"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../car/camera:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.634654, 3.14159, 1.01197e-07), Vector3(-0.0645772, 3.14159, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../car/camera:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0.438079, 0.0947933, 0.153439), Vector3(0.438079, 0.406003, 0.113595)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p5tel"]
+_data = {
+"RESET": SubResource("Animation_8776l"),
+"down": SubResource("Animation_t7n8k"),
+"left": SubResource("Animation_lmyys"),
+"right": SubResource("Animation_sc2pl"),
+"up": SubResource("Animation_s8uu2")
+}
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_31s8y"]
+size = Vector2(15, 200)
+subdivide_width = 8280
+
+[node name="game" type="Node3D" node_paths=PackedStringArray("Debug")]
+script = ExtResource("1_i31kb")
+Debug = NodePath("car/camera/Debug Ui")
+
+[node name="world" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8qcyu")
+
+[node name="car" parent="." instance=ExtResource("2_cyq8t")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.095, 0)
+
+[node name="camera" type="Camera3D" parent="car" node_paths=PackedStringArray("left_arrow", "right_arrow", "up_arrow", "down_arrow", "animation")]
+transform = Transform3D(-0.5, 7.9591e-08, -1.2649e-06, -2.90973e-09, 0.49894, 0.0325448, 1.2674e-06, 0.0325448, -0.49894, 0.438079, 0.406003, 0.113595)
+fov = 83.7352
+script = ExtResource("3_2850o")
+left_arrow = NodePath("ui/left")
+right_arrow = NodePath("ui/right")
+up_arrow = NodePath("ui/up")
+down_arrow = NodePath("ui/down")
+animation = NodePath("../animation")
+
+[node name="Debug Ui" parent="car/camera" instance=ExtResource("1_qc15p")]
+
+[node name="Menu" type="CanvasLayer" parent="car/camera"]
+
+[node name="Start Screen" parent="car/camera/Menu" node_paths=PackedStringArray("Ui") instance=ExtResource("4_ho165")]
+Ui = NodePath("../../ui")
+
+[node name="ui" type="CanvasLayer" parent="car/camera"]
 visible = false
+
+[node name="Control" type="Control" parent="car/camera/ui"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="car/camera/ui/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="car/camera/ui/Control/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 29
+text = "Score : 000000"
+horizontal_alignment = 1
+
+[node name="right" type="TextureButton" parent="car/camera/ui"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 1450.0
+offset_top = 391.0
+offset_right = 1706.0
+offset_bottom = 647.0
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("6_eocjf")
+texture_pressed = ExtResource("6_eocjf")
+texture_hover = ExtResource("6_eocjf")
+texture_disabled = ExtResource("6_eocjf")
+texture_focused = ExtResource("6_eocjf")
+
+[node name="left" type="TextureButton" parent="car/camera/ui"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = 137.0
+offset_top = 485.0
+offset_right = 393.0
+offset_bottom = 741.0
+rotation = 3.14159
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("6_eocjf")
+texture_pressed = ExtResource("6_eocjf")
+texture_hover = ExtResource("6_eocjf")
+texture_disabled = ExtResource("6_eocjf")
+texture_focused = ExtResource("6_eocjf")
+
+[node name="down" type="TextureButton" parent="car/camera/ui"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 844.0
+offset_top = 762.0
+offset_right = 1100.0
+offset_bottom = 1018.0
+rotation = 1.5708
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("6_eocjf")
+texture_pressed = ExtResource("6_eocjf")
+texture_hover = ExtResource("6_eocjf")
+texture_disabled = ExtResource("6_eocjf")
+texture_focused = ExtResource("6_eocjf")
+
+[node name="up" type="TextureButton" parent="car/camera/ui"]
+visible = false
+modulate = Color(0, 0, 0, 1)
+offset_left = 752.0
+offset_top = 219.0
+offset_right = 1008.0
+offset_bottom = 475.0
+rotation = -1.5708
+scale = Vector2(0.4, 0.4)
+texture_normal = ExtResource("6_eocjf")
+texture_pressed = ExtResource("6_eocjf")
+texture_hover = ExtResource("6_eocjf")
+texture_disabled = ExtResource("6_eocjf")
+texture_focused = ExtResource("6_eocjf")
+
+[node name="animation" type="AnimationPlayer" parent="car"]
+libraries = {
+"": SubResource("AnimationLibrary_p5tel")
+}
+
+[node name="light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.694357, 0.719631, 0, -0.719631, 0.694357, 0, 2.35604, 1.0578)
+light_energy = 2.219
+
+[node name="road" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.42326, 0, 0)
+mesh = SubResource("PlaneMesh_31s8y")
+
+[connection signal="button_down" from="car/camera/ui/right" to="car/camera" method="_on_right_button_down"]
+[connection signal="button_down" from="car/camera/ui/left" to="car/camera" method="_on_left_button_down"]
+[connection signal="button_down" from="car/camera/ui/down" to="car/camera" method="_on_down_button_down"]
+[connection signal="button_down" from="car/camera/ui/up" to="car/camera" method="_on_up_button_down"]
+[connection signal="animation_finished" from="car/animation" to="car/camera" method="_on_animation_animation_finished"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://br7i62lg04od2"]
+
+[ext_resource type="PackedScene" uid="uid://dw0jvd7u13bql" path="res://assets/models/low poly car.glb" id="1_qtv7t"]
+
+[node name="low poly car" instance=ExtResource("1_qtv7t")]
+
+[node name="steering wheel" parent="." index="4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0403173, 0.062202)

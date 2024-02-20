@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="template"
-run/main_scene="res://scenes/start_screen.tscn"
+config/name="Car Wreck"
+run/main_scene="res://scenes/level_zero.tscn"
 config/features=PackedStringArray("4.2", "GL Compatibility")
 boot_splash/image="res://assets/images/menu/splash.png"
 config/icon="res://assets/images/menu/icon.png"
@@ -35,6 +35,7 @@ window/stretch/mode="canvas_items"
 [filesystem]
 
 import/blender/enabled=false
+import/fbx/enabled=false
 
 [input]
 

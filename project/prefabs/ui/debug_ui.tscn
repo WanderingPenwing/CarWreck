@@ -26,10 +26,12 @@ split_offset = 760
 
 [node name="Debug Left" type="RichTextLabel" parent="Margin/Split"]
 layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 
 [node name="Debug Right" type="RichTextLabel" parent="Margin/Split"]
 layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 
 [node name="DrawingBoard" type="Control" parent="."]

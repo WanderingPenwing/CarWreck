@@ -5,12 +5,14 @@
 [ext_resource type="Script" path="res://scripts/menu/start_buttons.gd" id="2_kafhd"]
 
 [node name="Start Screen" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("2_kafhd")
 
 [node name="Start Screen" type="MarginContainer" parent="."]
 layout_direction = 2
@@ -23,29 +25,19 @@ grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Start Screen"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="Start Screen/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-theme = ExtResource("1_nqq7b")
-theme_override_colors/font_color = Color(0.701961, 0.701961, 0.701961, 1)
-theme_override_font_sizes/font_size = 20
-text = "Press F11 to toggle fullscreen"
+theme_override_constants/margin_bottom = 200
 
 [node name="VSplitContainer" type="VSplitContainer" parent="Start Screen"]
 layout_mode = 2
-split_offset = 220
+split_offset = 265
 
 [node name="Label" type="Label" parent="Start Screen/VSplitContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_nqq7b")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 60
-text = "Game Title"
+text = "Car Wreck"
 horizontal_alignment = 1
 
 [node name="Buttons" type="VBoxContainer" parent="Start Screen/VSplitContainer"]
@@ -53,25 +45,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 65
 alignment = 1
-script = ExtResource("2_kafhd")
 
-[node name="Start" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("1_aw4xi")]
+[node name="Start" parent="Start Screen/VSplitContainer/Buttons" groups=["start"] instance=ExtResource("1_aw4xi")]
 layout_mode = 2
 button_title = "Start"
-
-[node name="Options" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("1_aw4xi")]
-layout_mode = 2
-button_title = "Options"
-
-[node name="Credits" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("1_aw4xi")]
-layout_mode = 2
-button_title = "Credits"
 
 [node name="Quit" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("1_aw4xi")]
 layout_mode = 2
 button_title = "Quit"
 
-[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Start" to="Start Screen/VSplitContainer/Buttons" method="_on_start_activate"]
-[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Options" to="Start Screen/VSplitContainer/Buttons" method="_on_options_activate"]
-[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Credits" to="Start Screen/VSplitContainer/Buttons" method="_on_credits_activate"]
-[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Quit" to="Start Screen/VSplitContainer/Buttons" method="_on_quit_activate"]
+[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Start" to="." method="_on_start_activate"]
+[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Quit" to="." method="_on_quit_activate"]
