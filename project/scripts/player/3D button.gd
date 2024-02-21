@@ -1,12 +1,12 @@
 extends Node3D
 
-var enabled = true
+var enabled : bool = true
 
 signal clicked
 
 
 
-func _on_detection_input_event(camera: Node, event: InputEvent, position: Vector3, normal: Vector3, shape_idx: int) -> void:
+func _on_detection_input_event(_camera: Node, event: InputEvent, _position: Vector3, _normal: Vector3, _shape_idx: int) -> void:
 	if not enabled :
 		return
 	if not event is InputEventMouseButton :

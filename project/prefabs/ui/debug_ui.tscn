@@ -5,8 +5,8 @@
 
 [node name="Debug Ui" type="CanvasLayer" node_paths=PackedStringArray("DebugLeft", "DebugRight", "DrawingBoard")]
 script = ExtResource("1_e1at0")
-DebugLeft = NodePath("Margin/Split/Debug Left")
-DebugRight = NodePath("Margin/Split/Debug Right")
+DebugLeft = NodePath("Margin/HBoxContainer/Debug Left")
+DebugRight = NodePath("Margin/HBoxContainer/Debug Right")
 DrawingBoard = NodePath("DrawingBoard")
 
 [node name="Margin" type="MarginContainer" parent="."]
@@ -15,22 +15,30 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="Split" type="HSplitContainer" parent="Margin"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin"]
 layout_mode = 2
-split_offset = 760
+mouse_filter = 2
+alignment = 1
 
-[node name="Debug Left" type="RichTextLabel" parent="Margin/Split"]
+[node name="Debug Left" type="RichTextLabel" parent="Margin/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
+text = "
+"
 
-[node name="Debug Right" type="RichTextLabel" parent="Margin/Split"]
+[node name="Debug Right" type="RichTextLabel" parent="Margin/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 bbcode_enabled = true
 
@@ -39,4 +47,5 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 script = ExtResource("2_jjr0w")

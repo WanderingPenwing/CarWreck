@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqwpvrs2a704g"]
+
+[ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="1_3nm78"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="3D button" parent="." instance=ExtResource("1_3nm78")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.20952)
