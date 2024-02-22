@@ -41,7 +41,7 @@ func die(reason: String) -> void :
 	Score.hide()
 	get_tree().paused = true
 	
-func check_4_kill() -> void:
+func check_4_kill() -> void :
 	if car_velocity > max_car_velocity:
 		die("You were going above the speed limit: " + str(max_car_velocity)+ " km/h (fuck USA with mph)\nThe police caught you !")
 	if car_velocity < min_car_velocity:
@@ -66,8 +66,8 @@ func _on_radio_clicked() -> void :
 	die("electrocuted")
 
 
-func _on_game_over_restart() -> void:
-	var game = load("res://scenes/level_zero.tscn")
+func _on_game_over_restart() -> void :
+	var game : Resource = load("res://scenes/level_zero.tscn")
 	Transition.change_to_scene(game)
 
 
@@ -75,7 +75,7 @@ func _on_baby_clicked() -> void :
 	print("baby touched")
 	die("you touched the baby")
 
-func debug(delta) -> void:
+func debug(delta : float) -> void :
 	Debug.print_left("Press F3 to close the debug menu", 1)
 	Debug.print_left("Car velocity " + str(round(car_velocity)) + " km/h", 2)
 	Debug.print_left("Car target velocity " + str(round(car_target_velocity)) + " km/h", 3)
