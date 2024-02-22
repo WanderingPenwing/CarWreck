@@ -6,8 +6,9 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_j066m"]
 
-[node name="3D button" type="Node3D"]
+[node name="3D button" type="Node3D" node_paths=PackedStringArray("DebugSphere")]
 script = ExtResource("1_3b7lm")
+DebugSphere = NodePath("display")
 
 [node name="detection" type="Area3D" parent="."]
 

@@ -75,7 +75,7 @@ func _on_honk_clicked() -> void :
 
 
 func _on_radio_clicked() -> void :
-	var sequence : Array
+	var sequence : Array = []
 	for i in range(5):
 		sequence.push_back(randi_range(1,4))
 	# Play sequence
@@ -99,17 +99,17 @@ func debug(delta : float) -> void :
 	Debug.update_text()
 
 
-func _on_red_clicked():
+func _on_red_clicked() -> void :
 	pass # Replace with function body.
 
 
-func _on_yellow_clicked():
+func _on_yellow_clicked() -> void :
 	pass # Replace with function body.
 
 
-func _on_green_clicked():
+func _on_green_clicked() -> void :
 	pass # Replace with function body.
 
 
-func _on_blue_clicked():
+func _on_blue_clicked() -> void :
 	pass # Replace with function body.

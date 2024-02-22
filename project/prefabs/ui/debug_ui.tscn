@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ui/debug_infos.gd" id="1_e1at0"]
 [ext_resource type="Script" path="res://scripts/ui/drawings.gd" id="2_jjr0w"]
 
-[node name="Debug Ui" type="CanvasLayer" node_paths=PackedStringArray("DebugLeft", "DebugRight", "DrawingBoard")]
+[node name="Debug Ui" type="CanvasLayer" node_paths=PackedStringArray("DebugLeft", "DebugRight", "DrawingBoard") groups=["debug"]]
 script = ExtResource("1_e1at0")
 DebugLeft = NodePath("Margin/HBoxContainer/Debug Left")
 DebugRight = NodePath("Margin/HBoxContainer/Debug Right")
