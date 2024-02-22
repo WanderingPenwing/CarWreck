@@ -1,5 +1,6 @@
 extends Node3D
 
+const MUSICS = {"name1":"lullaby", "name2":"metal","name3" : "normal"}
 
 @export var Debug : Node
 @export var Score : Node
@@ -14,6 +15,10 @@ extends Node3D
 var score : float = 0
 var car_velocity : float = 50   # vitesse de la voiture en km/h
 var car_target_velocity : int = 40
+
+var sleep : float = 0
+var epilepsi : float = 0
+var curent_music : String
 
 
 @onready var Transition : Node = get_node("/root/SceneTransition")
@@ -33,6 +38,14 @@ func _process(delta : float) -> void :
 	check_4_kill()
 	debug(delta)
 
+func radio ()->void:
+	if MUSICS[curent_music] == "lullaby":
+		pass
+		## Mettre le fondu ici.
+		
+	elif MUSICS[curent_music] == "metal":
+		pass
+		## Mettre l'epilepsi
 
 func die(reason: String) -> void :
 	GameOver.set_message(reason)
@@ -62,8 +75,11 @@ func _on_honk_clicked() -> void :
 
 
 func _on_radio_clicked() -> void :
-	print("radio")
-	die("electrocuted")
+	var sequence : Array
+	for i in range(5):
+		sequence.push_back(randi_range(1,4))
+	# Play sequence
+	print(sequence)
 
 
 func _on_game_over_restart() -> void :
@@ -81,3 +97,19 @@ func debug(delta : float) -> void :
 	Debug.print_left("Car target velocity " + str(round(car_target_velocity)) + " km/h", 3)
 	Debug.print_right("FPS : " + str(round(1/delta)), 0)
 	Debug.update_text()
+
+
+func _on_red_clicked():
+	pass # Replace with function body.
+
+
+func _on_yellow_clicked():
+	pass # Replace with function body.
+
+
+func _on_green_clicked():
+	pass # Replace with function body.
+
+
+func _on_blue_clicked():
+	pass # Replace with function body.

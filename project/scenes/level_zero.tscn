@@ -304,7 +304,7 @@ libraries = {
 }
 
 [node name="brakes" parent="car" instance=ExtResource("7_35800")]
-transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.607, -0.475, 0.789)
+transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.564549, -0.515754, 0.820787)
 
 [node name="gaz" parent="car" instance=ExtResource("7_35800")]
 transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.392, -0.475, 0.789)
@@ -312,11 +312,25 @@ transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0
 [node name="honk" parent="car" instance=ExtResource("7_35800")]
 transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.437, 0, 0.644)
 
-[node name="radio" parent="car" instance=ExtResource("7_35800")]
-transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.007, -0.105, 0.744)
-
 [node name="baby" parent="car" instance=ExtResource("7_35800")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.508844, -0.248825, -0.834796)
+
+[node name="Radio" type="Node3D" parent="car"]
+
+[node name="radio" parent="car/Radio" instance=ExtResource("7_35800")]
+transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.007, -0.105, 0.744)
+
+[node name="Red" parent="car/Radio" instance=ExtResource("7_35800")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.00993137, -0.240263, 0.490257)
+
+[node name="Yellow" parent="car/Radio" instance=ExtResource("7_35800")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0118563, -0.240924, 0.628974)
+
+[node name="Green" parent="car/Radio" instance=ExtResource("7_35800")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.139039, -0.247708, 0.631665)
+
+[node name="Blue" parent="car/Radio" instance=ExtResource("7_35800")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.135598, -0.253392, 0.494112)
 
 [node name="road" type="Node3D" parent="."]
 script = ExtResource("8_qpu7e")
@@ -341,5 +355,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -162.606)
 [connection signal="clicked" from="car/brakes" to="." method="_on_brakes_clicked"]
 [connection signal="clicked" from="car/gaz" to="." method="_on_gaz_clicked"]
 [connection signal="clicked" from="car/honk" to="." method="_on_honk_clicked"]
-[connection signal="clicked" from="car/radio" to="." method="_on_radio_clicked"]
 [connection signal="clicked" from="car/baby" to="." method="_on_baby_clicked"]
+[connection signal="clicked" from="car/Radio/radio" to="." method="_on_radio_clicked"]
+[connection signal="clicked" from="car/Radio/Red" to="." method="_on_red_clicked"]
+[connection signal="clicked" from="car/Radio/Yellow" to="." method="_on_yellow_clicked"]
+[connection signal="clicked" from="car/Radio/Green" to="." method="_on_green_clicked"]
+[connection signal="clicked" from="car/Radio/Blue" to="." method="_on_blue_clicked"]
