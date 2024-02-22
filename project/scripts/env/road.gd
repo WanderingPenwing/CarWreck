@@ -1,11 +1,12 @@
 extends Node3D
 
-const SPEED : float = 100;
-const LIMIT : float = 350;
+const LIMIT : float = 320;
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+@onready var Game : Node = get_tree().get_first_node_in_group("game")
+
+
 func _process(delta: float) -> void:
 	for portion in get_tree().get_nodes_in_group("road") :
-		portion.global_position.z -= SPEED * delta
+		portion.global_position.z -= (Game.car_velocity - 20) * 2 * delta
 		if portion.global_position.z < -LIMIT :
 			portion.global_position.z += LIMIT * 2

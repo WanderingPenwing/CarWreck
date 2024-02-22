@@ -167,7 +167,7 @@ _data = {
 "up": SubResource("Animation_eqnxb")
 }
 
-[node name="game" type="Node3D" node_paths=PackedStringArray("Debug", "Score", "GameOver")]
+[node name="game" type="Node3D" node_paths=PackedStringArray("Debug", "Score", "GameOver") groups=["game"]]
 script = ExtResource("1_i31kb")
 Debug = NodePath("car/shake/camera/Debug Ui")
 Score = NodePath("car/shake/camera/ui/layout/margins/score")
@@ -186,7 +186,7 @@ transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.095, 0)
 [node name="shake" type="Node3D" parent="car"]
 script = ExtResource("3_v4wc3")
 
-[node name="camera" type="Camera3D" parent="car/shake" node_paths=PackedStringArray("left_arrow", "right_arrow", "up_arrow", "down_arrow", "animation")]
+[node name="camera" type="Camera3D" parent="car/shake" node_paths=PackedStringArray("left_arrow", "right_arrow", "up_arrow", "down_arrow", "animation") groups=["camera"]]
 transform = Transform3D(-0.5, 7.9591e-08, -1.2649e-06, -2.90973e-09, 0.49894, 0.0325448, 1.2674e-06, 0.0325448, -0.49894, 0.438079, 0.406003, 0.113595)
 fov = 83.7352
 script = ExtResource("3_2850o")
@@ -336,6 +336,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.135598, -0.253392, 0.
 script = ExtResource("8_qpu7e")
 
 [node name="road portion" parent="road" instance=ExtResource("9_d0pw5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.716095)
 
 [node name="road portion2" parent="road" instance=ExtResource("9_d0pw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 162.94)
@@ -344,7 +345,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 162.94)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 325.273)
 
 [node name="road portion4" parent="road" instance=ExtResource("9_d0pw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -162.606)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -161.098)
 
 [connection signal="button_down" from="car/shake/camera/ui/right button" to="car/shake/camera" method="_on_right_button_down"]
 [connection signal="button_down" from="car/shake/camera/ui/left button" to="car/shake/camera" method="_on_left_button_down"]

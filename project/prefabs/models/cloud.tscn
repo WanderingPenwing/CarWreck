@@ -1,4 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://dj75ts32l0ij2"]
+[gd_scene load_steps=4 format=3 uid="uid://dj75ts32l0ij2"]
+
+[ext_resource type="Script" path="res://scripts/env/cloud.gd" id="1_637jo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3c1o"]
 transparency = 1
@@ -6,9 +8,11 @@ shading_mode = 0
 albedo_color = Color(1, 1, 1, 0.686275)
 
 [sub_resource type="SphereMesh" id="SphereMesh_po05v"]
-height = 0.3
+radius = 5.0
+height = 3.0
 
 [node name="cloud" type="Node3D"]
+script = ExtResource("1_637jo")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 material_override = SubResource("StandardMaterial3D_r3c1o")
