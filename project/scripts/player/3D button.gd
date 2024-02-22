@@ -9,7 +9,7 @@ var enabled : bool = true
 signal clicked
 
 func _ready() -> void :
-	self.hide()
+	DebugSphere.hide()
 
 func _process(delta: float) -> void :
 	if Debug_Ui.visible == DebugSphere.visible :

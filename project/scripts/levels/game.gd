@@ -8,9 +8,9 @@ const MUSICS = {"name1":"lullaby", "name2":"metal","name3" : "normal"}
 
 @export var min_car_velocity : int = 30  # valeur à ajuster
 @export var max_car_velocity : int = 70
-@export var chance_update_velocity : float = 0.01 # probabilité de chnager
+@export var chance_update_velocity : float = 0.005 # probabilité de chnager
 @export var velocity_boundary : int = 10
-@export var weight_velocity : float = 0.05
+@export var acceleration : float = 0.02
 
 var score : float = 0
 var car_velocity : float = 50   # vitesse de la voiture en km/h
@@ -32,10 +32,10 @@ func _process(delta : float) -> void :
 	if randf() < chance_update_velocity:
 		car_target_velocity = randi_range(min_car_velocity-velocity_boundary, max_car_velocity+velocity_boundary)
 	
-	if car_velocity > car_target_velocity + weight_velocity:
-		car_velocity -= weight_velocity
-	elif car_target_velocity - weight_velocity > car_velocity :
-		car_velocity += weight_velocity
+	if car_velocity > car_target_velocity + acceleration :
+		car_velocity -= acceleration
+	elif car_target_velocity - acceleration > car_velocity :
+		car_velocity += acceleration
 	
 	check_4_kill()
 	debug(delta)
@@ -69,11 +69,13 @@ func check_4_kill() -> void :
 func _on_brakes_clicked() -> void :
 	var brake : int = randi_range(0,10)
 	car_velocity -= brake
+	car_target_velocity -= brake * 0.8
 
 
 func _on_gaz_clicked() -> void :
 	var speed_up : int = randi_range(0,10)
 	car_velocity += speed_up
+	car_target_velocity += speed_up * 0.8
 
 
 func _on_honk_clicked() -> void :
