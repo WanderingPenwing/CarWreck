@@ -332,6 +332,20 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.139039, -0.247708, 0.
 [node name="Blue" parent="car/Radio" instance=ExtResource("7_35800")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.135598, -0.253392, 0.494112)
 
+[node name="dashboard" type="Node3D" parent="car"]
+
+[node name="speed" type="Label3D" parent="car/dashboard" groups=["speed_label"]]
+transform = Transform3D(-0.535, 1.21053e-08, -4.51775e-08, 0, 0.51677, 0.138468, 4.67712e-08, 0.138468, -0.51677, 0.438, 0.0553542, 0.758292)
+modulate = Color(0.772549, 0.772549, 0.772549, 1)
+text = "00"
+font_size = 20
+
+[node name="kmh" type="Label3D" parent="car/dashboard"]
+transform = Transform3D(-0.535, -1.21053e-08, 4.51775e-08, 0, 0.51677, 0.138468, -4.67712e-08, 0.138468, -0.51677, 0.363, 0.046, 0.760397)
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
+text = "km/h"
+font_size = 10
+
 [node name="road" type="Node3D" parent="."]
 script = ExtResource("8_qpu7e")
 

@@ -20,12 +20,14 @@ var sleep : float = 0
 var epilepsi : float = 0
 var curent_music : String
 
-
 @onready var Transition : Node = get_node("/root/SceneTransition")
+@onready var SpeedLabel : Node = get_tree().get_first_node_in_group("speed_label")
+
 
 func _process(delta : float) -> void :
 	score += delta * 2.5
 	Score.text = "Score : " + "0".repeat(8 - floor(log(max(1,score*5))/log(10))) + str(floor(score)*5)
+	SpeedLabel.text = str(round(car_velocity))
 	
 	if randf() < chance_update_velocity:
 		car_target_velocity = randi_range(min_car_velocity-velocity_boundary, max_car_velocity+velocity_boundary)
@@ -38,6 +40,7 @@ func _process(delta : float) -> void :
 	check_4_kill()
 	debug(delta)
 
+
 func radio ()->void:
 	if MUSICS[curent_music] == "lullaby":
 		pass
@@ -47,18 +50,21 @@ func radio ()->void:
 		pass
 		## Mettre l'epilepsi
 
+
 func die(reason: String) -> void :
 	GameOver.set_message(reason)
 	GameOver.set_score(score)
 	GameOver.show()
 	Score.hide()
 	get_tree().paused = true
-	
+
+
 func check_4_kill() -> void :
 	if car_velocity > max_car_velocity:
 		die("You were going above the speed limit: " + str(max_car_velocity)+ " km/h (fuck USA with mph)\nThe police caught you !")
 	if car_velocity < min_car_velocity:
 		die("You were going under the speed limit: " + str(min_car_velocity)+ " km/h (fuck USA with mph)\nThe baby shat himself.")
+
 
 func _on_brakes_clicked() -> void :
 	var brake : int = randi_range(0,10)
