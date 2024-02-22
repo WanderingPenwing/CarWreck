@@ -69,13 +69,13 @@ func check_4_kill() -> void :
 func _on_brakes_clicked() -> void :
 	var brake : int = randi_range(0,10)
 	car_velocity -= brake
-	car_target_velocity -= brake * 0.8
+	car_target_velocity -= round(brake * 0.8)
 
 
 func _on_gaz_clicked() -> void :
 	var speed_up : int = randi_range(0,10)
 	car_velocity += speed_up
-	car_target_velocity += speed_up * 0.8
+	car_target_velocity += round(speed_up * 0.8)
 
 
 func _on_honk_clicked() -> void :

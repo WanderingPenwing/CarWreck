@@ -11,6 +11,6 @@ func _ready() -> void :
 
 
 func pedal_step() -> void :
-	var tween = get_tree().create_tween()
+	var tween : Tween = get_tree().create_tween()
 	tween.tween_property(self, "rotation_degrees", Vector3(ACTIVE_ROTATION, 0, 0), ACTIVATION_TIME)
 	tween.tween_property(self, "rotation_degrees", Vector3(REST_ROTATION, 0, 0), DEACTIVATION_TIME)

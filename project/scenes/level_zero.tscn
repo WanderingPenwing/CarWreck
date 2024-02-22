@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=24 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -14,6 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://ckvrgekvupve6" path="res://assets/models/pedal.glb" id="10_nryx3"]
 [ext_resource type="PackedScene" uid="uid://55m7b56k2vh6" path="res://assets/models/steering wheel.glb" id="11_8mxt4"]
 [ext_resource type="Script" path="res://scripts/entities/pedal.gd" id="11_ir1op"]
+[ext_resource type="PackedScene" uid="uid://cs1tc2jj7ctle" path="res://prefabs/entities/simon.tscn" id="12_8tiff"]
+[ext_resource type="Script" path="res://scripts/entities/radio system.gd" id="12_qmdvi"]
 
 [sub_resource type="Environment" id="Environment_8qcyu"]
 background_mode = 1
@@ -185,9 +187,11 @@ light_energy = 2.219
 
 [node name="car" parent="." instance=ExtResource("2_cyq8t")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.095, 0)
+metadata/_edit_lock_ = true
 
 [node name="shake" type="Node3D" parent="car"]
 script = ExtResource("3_v4wc3")
+metadata/_edit_lock_ = true
 
 [node name="camera" type="Camera3D" parent="car/shake" node_paths=PackedStringArray("left_arrow", "right_arrow", "up_arrow", "down_arrow", "animation") groups=["camera"]]
 transform = Transform3D(-0.5, 7.9591e-08, -1.2649e-06, -2.90973e-09, 0.49894, 0.0325448, 1.2674e-06, 0.0325448, -0.49894, 0.438079, 0.406003, 0.113595)
@@ -198,6 +202,7 @@ right_arrow = NodePath("ui/right button")
 up_arrow = NodePath("ui/up button")
 down_arrow = NodePath("ui/down button")
 animation = NodePath("../camera animation")
+metadata/_edit_lock_ = true
 
 [node name="ui" type="CanvasLayer" parent="car/shake/camera"]
 visible = false
@@ -325,22 +330,27 @@ script = ExtResource("11_ir1op")
 [node name="baby" parent="car" instance=ExtResource("7_35800")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.508844, -0.248825, -0.834796)
 
-[node name="radio system" type="Node3D" parent="car"]
+[node name="radio system" type="Node3D" parent="car" node_paths=PackedStringArray("Simon")]
+script = ExtResource("12_qmdvi")
+Simon = NodePath("simon display")
+
+[node name="simon display" parent="car/radio system" instance=ExtResource("12_8tiff")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.00998297, -0.254991, 0.538732)
 
 [node name="radio" parent="car/radio system" instance=ExtResource("7_35800")]
 transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.007, -0.105, 0.744)
 
 [node name="red" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.00993137, -0.240263, 0.490257)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0674521, -0.217545, 0.620212)
 
 [node name="yellow" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0118563, -0.240924, 0.628974)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0761627, -0.226279, 0.468873)
 
 [node name="green" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.139039, -0.247708, 0.631665)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0775591, -0.224532, 0.611057)
 
 [node name="blue" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.135598, -0.253392, 0.494112)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.072592, -0.222953, 0.477706)
 
 [node name="dashboard" type="Node3D" parent="car"]
 
@@ -366,18 +376,23 @@ transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0
 
 [node name="road" type="Node3D" parent="."]
 script = ExtResource("8_qpu7e")
+metadata/_edit_lock_ = true
 
 [node name="road portion" parent="road" instance=ExtResource("9_d0pw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.716095)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0168586, 0.716095)
+metadata/_edit_lock_ = true
 
 [node name="road portion2" parent="road" instance=ExtResource("9_d0pw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 162.94)
+metadata/_edit_lock_ = true
 
 [node name="road portion3" parent="road" instance=ExtResource("9_d0pw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 325.273)
+metadata/_edit_lock_ = true
 
 [node name="road portion4" parent="road" instance=ExtResource("9_d0pw5")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -161.098)
+metadata/_edit_lock_ = true
 
 [connection signal="button_down" from="car/shake/camera/ui/right button" to="car/shake/camera" method="_on_right_button_down"]
 [connection signal="button_down" from="car/shake/camera/ui/left button" to="car/shake/camera" method="_on_left_button_down"]
@@ -390,7 +405,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -161.098)
 [connection signal="clicked" from="car/baby" to="." method="_on_baby_clicked"]
 [connection signal="clicked" from="car/radio system/radio" to="." method="_on_radio_clicked"]
 [connection signal="clicked" from="car/radio system/red" to="." method="_on_red_clicked"]
+[connection signal="clicked" from="car/radio system/red" to="car/radio system" method="_on_red_clicked"]
 [connection signal="clicked" from="car/radio system/yellow" to="." method="_on_yellow_clicked"]
+[connection signal="clicked" from="car/radio system/yellow" to="car/radio system" method="_on_yellow_clicked"]
 [connection signal="clicked" from="car/radio system/green" to="." method="_on_green_clicked"]
+[connection signal="clicked" from="car/radio system/green" to="car/radio system" method="_on_green_clicked"]
 [connection signal="clicked" from="car/radio system/blue" to="." method="_on_blue_clicked"]
+[connection signal="clicked" from="car/radio system/blue" to="car/radio system" method="_on_blue_clicked"]
 [connection signal="clicked" from="car/steering/honk" to="." method="_on_honk_clicked"]

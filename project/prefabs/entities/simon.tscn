@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://cs1tc2jj7ctle"]
+
+[ext_resource type="Script" path="res://scripts/entities/simon.gd" id="1_rrlyu"]
+[ext_resource type="PackedScene" uid="uid://b0ja33sno7vgt" path="res://assets/models/simon/simon_off.glb" id="2_5xg8r"]
+[ext_resource type="PackedScene" uid="uid://ckkumyk8m5wkk" path="res://assets/models/simon/simon_on.glb" id="3_q6h7s"]
+[ext_resource type="PackedScene" uid="uid://cbejgcqw3n70g" path="res://assets/models/simon/simon_green.glb" id="4_xjdk7"]
+[ext_resource type="PackedScene" uid="uid://v5w8gcli6wdb" path="res://assets/models/simon/simon_blue.glb" id="5_lu5a5"]
+[ext_resource type="PackedScene" uid="uid://doqq0o1tx0dmr" path="res://assets/models/simon/simon_red.glb" id="6_lv6ll"]
+[ext_resource type="PackedScene" uid="uid://c15d6sphbp8dc" path="res://assets/models/simon/simon_yellow.glb" id="7_7r06d"]
+
+[node name="simon" type="Node3D"]
+script = ExtResource("1_rrlyu")
+
+[node name="off" parent="." instance=ExtResource("2_5xg8r")]
+
+[node name="on" parent="." instance=ExtResource("3_q6h7s")]
+visible = false
+
+[node name="green" parent="." instance=ExtResource("4_xjdk7")]
+visible = false
+
+[node name="blue" parent="." instance=ExtResource("5_lu5a5")]
+visible = false
+
+[node name="red" parent="." instance=ExtResource("6_lv6ll")]
+visible = false
+
+[node name="yellow" parent="." instance=ExtResource("7_7r06d")]
+visible = false
