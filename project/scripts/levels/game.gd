@@ -46,12 +46,11 @@ func _on_radio_clicked() -> void :
 	die("electrocuted")
 
 
-func _on_baby_clicked() -> void :
-	print("baby")
-	die("Tried to touch the baby")
-
-
 func _on_game_over_restart() -> void:
 	var game = load("res://scenes/level_zero.tscn")
 	Transition.change_to_scene(game)
-	
+
+
+func _on_baby_clicked() -> void :
+	print("baby touched")
+	die("you touched the baby")
