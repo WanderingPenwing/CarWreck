@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://byx6me61o50od"]
+[gd_scene load_steps=9 format=3 uid="uid://byx6me61o50od"]
 
 [ext_resource type="PackedScene" uid="uid://brit6jodp87pu" path="res://assets/models/road.glb" id="1_3rjlr"]
+[ext_resource type="Script" path="res://scripts/env/road_portion.gd" id="1_28sl7"]
 [ext_resource type="Texture2D" uid="uid://cdol7l3re4cm3" path="res://assets/images/env/fx_cloudalpha01.png" id="2_xola1"]
 
 [sub_resource type="Curve" id="Curve_2jo4e"]
@@ -27,7 +28,9 @@ billboard_mode = 1
 material = SubResource("StandardMaterial3D_74lui")
 size = Vector2(10, 10)
 
-[node name="road portion" type="Node3D" groups=["road"]]
+[node name="road portion" type="Node3D" node_paths=PackedStringArray("Road") groups=["road"]]
+script = ExtResource("1_28sl7")
+Road = NodePath("road2")
 
 [node name="road2" parent="." instance=ExtResource("1_3rjlr")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.7162, 0)

@@ -3,6 +3,7 @@ extends Node
 # Global Node whivh keep the global variable in memories (stuff that need to be kept between scenes/levels, and/or saved)
 
 const SAVE_FILE : String = "user://state.save"
+const FULLSCREEN_DELAY : float = 0.5
 
 @onready var master_bus : int = AudioServer.get_bus_index("Master")
 @onready var sfx_bus : int = AudioServer.get_bus_index("Sfx")
@@ -14,7 +15,7 @@ var volume : Dictionary = {
 	"music" : 50 
 }
 var fullscreen : bool = false
-var fullscreen_was_pressed : bool = false
+var last_fullscreen_toggle : float = 0
 
 
 func _ready() -> void :
@@ -65,12 +66,11 @@ func update_volume() -> void :
 func _input(event : InputEvent) -> void :
 	if not event is InputEventKey :
 		return
+	if Time.get_ticks_msec() - last_fullscreen_toggle < FULLSCREEN_DELAY :
+		return
 	if event.is_action_pressed("fullscreen") :
-		if !fullscreen_was_pressed :
-			toggle_fullscreen()
-		fullscreen_was_pressed = true
-	else :
-		fullscreen_was_pressed = false
+		toggle_fullscreen()
+		last_fullscreen_toggle = Time.get_ticks_msec()
 
 
 

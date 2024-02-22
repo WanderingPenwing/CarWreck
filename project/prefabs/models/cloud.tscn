@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dj75ts32l0ij2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3c1o"]
+transparency = 1
+shading_mode = 0
+albedo_color = Color(1, 1, 1, 0.686275)
+
+[sub_resource type="SphereMesh" id="SphereMesh_po05v"]
+height = 0.3
+
+[node name="cloud" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_r3c1o")
+mesh = SubResource("SphereMesh_po05v")
