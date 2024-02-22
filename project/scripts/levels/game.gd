@@ -43,6 +43,7 @@ func _on_honk_clicked() -> void :
 
 func _on_radio_clicked() -> void :
 	print("radio")
+	die("electrocuted")
 
 
 func _on_baby_clicked() -> void :
