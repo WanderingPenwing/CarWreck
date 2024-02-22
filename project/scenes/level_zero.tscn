@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=19 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cqdk55leyqiej" path="res://assets/images/menu/arrow.png" id="6_eocjf"]
 [ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="7_35800"]
 [ext_resource type="Script" path="res://scripts/env/road.gd" id="8_qpu7e"]
+[ext_resource type="PackedScene" uid="uid://ds5doom2e1j8x" path="res://prefabs/models/game_over.tscn" id="8_us8ht"]
 [ext_resource type="PackedScene" uid="uid://byx6me61o50od" path="res://prefabs/models/road_portion.tscn" id="9_d0pw5"]
 
 [sub_resource type="Environment" id="Environment_8qcyu"]
@@ -166,13 +167,18 @@ _data = {
 "up": SubResource("Animation_eqnxb")
 }
 
-[node name="game" type="Node3D" node_paths=PackedStringArray("Debug", "Score")]
+[node name="game" type="Node3D" node_paths=PackedStringArray("Debug", "Score", "GameOver")]
 script = ExtResource("1_i31kb")
 Debug = NodePath("car/shake/camera/Debug Ui")
 Score = NodePath("car/shake/camera/ui/layout/margins/score")
+GameOver = NodePath("car/shake/camera/Game Over/Game Over")
 
 [node name="world" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8qcyu")
+
+[node name="light" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.694357, 0.719631, 0, -0.719631, 0.694357, 0, 2.35604, 1.0578)
+light_energy = 2.219
 
 [node name="car" parent="." instance=ExtResource("2_cyq8t")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.095, 0)
@@ -286,6 +292,11 @@ texture_focused = ExtResource("6_eocjf")
 [node name="Start Screen" parent="car/shake/camera/Menu" node_paths=PackedStringArray("Ui") instance=ExtResource("4_ho165")]
 Ui = NodePath("../../ui")
 
+[node name="Game Over" type="CanvasLayer" parent="car/shake/camera"]
+
+[node name="Game Over" parent="car/shake/camera/Game Over" instance=ExtResource("8_us8ht")]
+visible = false
+
 [node name="camera animation" type="AnimationPlayer" parent="car/shake"]
 root_node = NodePath("../..")
 libraries = {
@@ -307,10 +318,6 @@ transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0
 [node name="baby" parent="car" instance=ExtResource("7_35800")]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.464063, -0.204846, -0.772364)
 
-[node name="light" type="DirectionalLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.694357, 0.719631, 0, -0.719631, 0.694357, 0, 2.35604, 1.0578)
-light_energy = 2.219
-
 [node name="road" type="Node3D" parent="."]
 script = ExtResource("8_qpu7e")
 
@@ -329,6 +336,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -162.606)
 [connection signal="button_down" from="car/shake/camera/ui/left button" to="car/shake/camera" method="_on_left_button_down"]
 [connection signal="button_down" from="car/shake/camera/ui/down button" to="car/shake/camera" method="_on_down_button_down"]
 [connection signal="button_down" from="car/shake/camera/ui/up button" to="car/shake/camera" method="_on_up_button_down"]
+[connection signal="restart" from="car/shake/camera/Game Over/Game Over" to="." method="_on_game_over_restart"]
 [connection signal="animation_finished" from="car/shake/camera animation" to="car/shake/camera" method="_on_animation_animation_finished"]
 [connection signal="clicked" from="car/brakes" to="." method="_on_brakes_clicked"]
 [connection signal="clicked" from="car/gaz" to="." method="_on_gaz_clicked"]

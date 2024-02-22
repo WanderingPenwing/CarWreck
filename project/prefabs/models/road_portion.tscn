@@ -1,8 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://byx6me61o50od"]
+[gd_scene load_steps=8 format=3 uid="uid://byx6me61o50od"]
 
 [ext_resource type="PackedScene" uid="uid://brit6jodp87pu" path="res://assets/models/road.glb" id="1_3rjlr"]
+[ext_resource type="Texture2D" uid="uid://cdol7l3re4cm3" path="res://assets/images/env/fx_cloudalpha01.png" id="2_xola1"]
+
+[sub_resource type="Curve" id="Curve_2jo4e"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.217391, 1), -0.040986, -0.040986, 0, 0, Vector2(0.826087, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0388844, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_joyfy"]
+curve = SubResource("Curve_2jo4e")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_rajr5"]
+emission_shape = 3
+emission_box_extents = Vector3(80, 2, 40)
+inherit_velocity_ratio = 1.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_joyfy")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_74lui"]
+transparency = 1
+shading_mode = 0
+albedo_texture = ExtResource("2_xola1")
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_ksu0b"]
+material = SubResource("StandardMaterial3D_74lui")
+size = Vector2(10, 10)
 
 [node name="road portion" type="Node3D" groups=["road"]]
 
 [node name="road2" parent="." instance=ExtResource("1_3rjlr")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.7162, 0)
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.76, 0, 0, 0, 1.76, 0, 0, 0, 1.76, 0, 25.7032, -0.488)
+visible = false
+amount = 10
+lifetime = 10.0
+visibility_aabb = AABB(-9.72017, -3.20403, -9.32779, 19.123, 6.40806, 18.6556)
+process_material = SubResource("ParticleProcessMaterial_rajr5")
+draw_pass_1 = SubResource("QuadMesh_ksu0b")

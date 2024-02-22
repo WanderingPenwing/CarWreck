@@ -43,7 +43,7 @@ horizontal_alignment = 1
 [node name="Buttons" type="VBoxContainer" parent="Start Screen/VSplitContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 65
+theme_override_constants/separation = 100
 alignment = 1
 
 [node name="Start" parent="Start Screen/VSplitContainer/Buttons" groups=["start"] instance=ExtResource("1_aw4xi")]
@@ -53,6 +53,7 @@ button_title = "Start"
 [node name="Quit" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("1_aw4xi")]
 layout_mode = 2
 button_title = "Quit"
+custom_size = 200.0
 
 [connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Start" to="." method="_on_start_activate"]
 [connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Quit" to="." method="_on_quit_activate"]
