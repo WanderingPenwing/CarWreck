@@ -2,10 +2,6 @@ extends Node3D
 
 const MUSICS = {"name1":"lullaby", "name2":"metal","name3" : "normal"}
 
-@export var Debug : Node
-@export var Score : Node
-@export var GameOver : Node
-
 var score : float = 0
 var car_velocity : float = 50   # vitesse de la voiture en km/h
 var car_target_velocity : int = 40
@@ -17,7 +13,9 @@ var sequence : Array
 
 @onready var Transition : Node = get_node("/root/SceneTransition")
 @onready var SpeedLabel : Node = get_tree().get_first_node_in_group("speed_label")
-
+@onready var Debug : Node = get_tree().get_first_node_in_group("debug")
+@onready var Score : Node = get_tree().get_first_node_in_group("score")
+@onready var GameOver : Node = get_tree().get_first_node_in_group("game_over")
 
 func _process(delta : float) -> void :
 	score += delta * 2.5

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/ui/game_over.gd" id="1_skh8f"]
 [ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="2_01u5k"]
 
-[node name="Game Over" type="Control" node_paths=PackedStringArray("Message", "Score", "Restart")]
+[node name="Game Over" type="Control" node_paths=PackedStringArray("Message", "Score", "Restart") groups=["game_over"]]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15

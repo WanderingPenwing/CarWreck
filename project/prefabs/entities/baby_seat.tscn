@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bfdhjujdxdqxa"]
+
+[ext_resource type="Script" path="res://scripts/entities/baby.gd" id="1_nm6e5"]
+[ext_resource type="PackedScene" uid="uid://dy657qcbiy8ko" path="res://assets/models/baby.glb" id="2_2hgrq"]
+[ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="3_ctlse"]
+[ext_resource type="PackedScene" uid="uid://gka6twn427qf" path="res://assets/models/belt.glb" id="4_n2ltq"]
+
+[node name="baby seat" type="Node3D" node_paths=PackedStringArray("Belt", "Baby")]
+script = ExtResource("1_nm6e5")
+Belt = NodePath("belt")
+Baby = NodePath("baby")
+
+[node name="baby" parent="." instance=ExtResource("2_2hgrq")]
+
+[node name="baby_interact" parent="baby" instance=ExtResource("3_ctlse")]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.476538, 0, -0.660791)
+
+[node name="belt" parent="." instance=ExtResource("4_n2ltq")]
+
+[connection signal="clicked" from="baby/baby_interact" to="." method="_on_baby_interact_clicked"]

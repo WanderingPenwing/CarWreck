@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://68cceeip4fg"]
+
+[node name="dashboard" type="Node3D"]
+
+[node name="speed" type="Label3D" parent="." groups=["speed_label"]]
+transform = Transform3D(-0.535, 1.21053e-08, -4.51775e-08, 0, 0.51677, 0.138468, 4.67712e-08, 0.138468, -0.51677, 0.438, 0.0553542, 0.758292)
+modulate = Color(0.772549, 0.772549, 0.772549, 1)
+text = "00"
+font_size = 20
+
+[node name="kmh" type="Label3D" parent="."]
+transform = Transform3D(-0.535, -1.21053e-08, 4.51775e-08, 0, 0.51677, 0.138468, -4.67712e-08, 0.138468, -0.51677, 0.363, 0.046, 0.760397)
+modulate = Color(0.545098, 0.545098, 0.545098, 1)
+text = "km/h"
+font_size = 10

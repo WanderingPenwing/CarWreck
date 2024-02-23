@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg6inuw78j5up"]
+
+[ext_resource type="Script" path="res://scripts/entities/pedals.gd" id="1_tfnb1"]
+[ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="2_eoljh"]
+[ext_resource type="PackedScene" uid="uid://ckvrgekvupve6" path="res://assets/models/pedal.glb" id="3_bijsv"]
+[ext_resource type="Script" path="res://scripts/entities/pedal.gd" id="4_crwvw"]
+
+[node name="pedals" type="Node3D"]
+script = ExtResource("1_tfnb1")
+
+[node name="brakes" parent="." instance=ExtResource("2_eoljh")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0.555, -0.495, 0.789)
+
+[node name="pedal" parent="brakes" instance=ExtResource("3_bijsv")]
+transform = Transform3D(8.33333, 0, 0, 0, 8.33333, 0, 0, 0, 8.33333, -0.008, 0.825, 0.954)
+script = ExtResource("4_crwvw")
+
+[node name="gaz" parent="." instance=ExtResource("2_eoljh")]
+transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0.332, -0.495, 0.789)
+
+[node name="pedal" parent="gaz" instance=ExtResource("3_bijsv")]
+transform = Transform3D(8.33333, 0, 0, 0, 8.33333, 0, 0, 0, 8.33333, 0.018, 0.825, 0.954)
+script = ExtResource("4_crwvw")
+
+[connection signal="clicked" from="brakes" to="." method="_on_brakes_clicked"]
+[connection signal="clicked" from="gaz" to="." method="_on_gaz_clicked"]

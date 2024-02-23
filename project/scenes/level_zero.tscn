@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=25 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -10,16 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="7_35800"]
 [ext_resource type="Script" path="res://scripts/env/road.gd" id="8_qpu7e"]
 [ext_resource type="PackedScene" uid="uid://ds5doom2e1j8x" path="res://prefabs/models/game_over.tscn" id="8_us8ht"]
-[ext_resource type="Script" path="res://scripts/entities/pedals.gd" id="9_btl65"]
+[ext_resource type="PackedScene" uid="uid://dg6inuw78j5up" path="res://prefabs/entities/pedals.tscn" id="9_5ktni"]
 [ext_resource type="PackedScene" uid="uid://byx6me61o50od" path="res://prefabs/models/road_portion.tscn" id="9_d0pw5"]
-[ext_resource type="PackedScene" uid="uid://ckvrgekvupve6" path="res://assets/models/pedal.glb" id="10_nryx3"]
-[ext_resource type="PackedScene" uid="uid://55m7b56k2vh6" path="res://assets/models/steering wheel.glb" id="11_8mxt4"]
-[ext_resource type="Script" path="res://scripts/entities/pedal.gd" id="11_ir1op"]
 [ext_resource type="PackedScene" uid="uid://cs1tc2jj7ctle" path="res://prefabs/entities/simon.tscn" id="12_8tiff"]
 [ext_resource type="Script" path="res://scripts/entities/radio system.gd" id="12_qmdvi"]
-[ext_resource type="Script" path="res://scripts/entities/baby.gd" id="14_bxdrh"]
-[ext_resource type="PackedScene" uid="uid://dy657qcbiy8ko" path="res://assets/models/baby.glb" id="15_8fe52"]
-[ext_resource type="PackedScene" uid="uid://gka6twn427qf" path="res://assets/models/belt.glb" id="16_ecnvp"]
+[ext_resource type="PackedScene" uid="uid://68cceeip4fg" path="res://prefabs/entities/dashboard.tscn" id="13_3vq5l"]
+[ext_resource type="PackedScene" uid="uid://1iyv7anqt2wt" path="res://prefabs/entities/steering.tscn" id="13_vw33e"]
+[ext_resource type="PackedScene" uid="uid://bfdhjujdxdqxa" path="res://prefabs/entities/baby_seat.tscn" id="17_4h7d0"]
 
 [sub_resource type="Environment" id="Environment_8qcyu"]
 background_mode = 1
@@ -33,7 +30,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("shake/camera:rotation")
+tracks/0/path = NodePath("player/camera:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -45,7 +42,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("shake/camera:position")
+tracks/1/path = NodePath("player/camera:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -61,7 +58,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("shake/camera:rotation")
+tracks/0/path = NodePath("player/camera:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -73,7 +70,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("shake/camera:position")
+tracks/1/path = NodePath("player/camera:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -89,7 +86,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("shake/camera:rotation")
+tracks/0/path = NodePath("player/camera:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -101,7 +98,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("shake/camera:position")
+tracks/1/path = NodePath("player/camera:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -117,7 +114,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("shake/camera:rotation")
+tracks/0/path = NodePath("player/camera:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -129,7 +126,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("shake/camera:position")
+tracks/1/path = NodePath("player/camera:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -145,7 +142,7 @@ length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("shake/camera:rotation")
+tracks/0/path = NodePath("player/camera:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -157,7 +154,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("shake/camera:position")
+tracks/1/path = NodePath("player/camera:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -176,11 +173,8 @@ _data = {
 "up": SubResource("Animation_eqnxb")
 }
 
-[node name="game" type="Node3D" node_paths=PackedStringArray("Debug", "Score", "GameOver") groups=["game"]]
+[node name="game" type="Node3D" groups=["game"]]
 script = ExtResource("1_i31kb")
-Debug = NodePath("car/shake/camera/Debug Ui")
-Score = NodePath("car/shake/camera/ui/layout/margins/score")
-GameOver = NodePath("car/shake/camera/Game Over/Game Over")
 
 [node name="world" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_8qcyu")
@@ -193,11 +187,11 @@ light_energy = 2.219
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 2.095, 0)
 metadata/_edit_lock_ = true
 
-[node name="shake" type="Node3D" parent="car"]
+[node name="player" type="Node3D" parent="car"]
 script = ExtResource("3_v4wc3")
 metadata/_edit_lock_ = true
 
-[node name="camera" type="Camera3D" parent="car/shake" node_paths=PackedStringArray("left_arrow", "right_arrow", "up_arrow", "down_arrow", "animation") groups=["camera"]]
+[node name="camera" type="Camera3D" parent="car/player" node_paths=PackedStringArray("left_arrow", "right_arrow", "up_arrow", "down_arrow", "animation") groups=["camera"]]
 transform = Transform3D(-0.5, 7.9591e-08, -1.2649e-06, -2.90973e-09, 0.49894, 0.0325448, 1.2674e-06, 0.0325448, -0.49894, 0.438079, 0.406003, 0.113595)
 fov = 83.7352
 script = ExtResource("3_2850o")
@@ -208,10 +202,10 @@ down_arrow = NodePath("ui/down button")
 animation = NodePath("../camera animation")
 metadata/_edit_lock_ = true
 
-[node name="ui" type="CanvasLayer" parent="car/shake/camera"]
+[node name="ui" type="CanvasLayer" parent="car/player/camera"]
 visible = false
 
-[node name="layout" type="Control" parent="car/shake/camera/ui"]
+[node name="layout" type="Control" parent="car/player/camera/ui"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -220,7 +214,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="margins" type="MarginContainer" parent="car/shake/camera/ui/layout"]
+[node name="margins" type="MarginContainer" parent="car/player/camera/ui/layout"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -232,7 +226,7 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="score" type="Label" parent="car/shake/camera/ui/layout/margins"]
+[node name="score" type="Label" parent="car/player/camera/ui/layout/margins" groups=["score"]]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
@@ -240,7 +234,7 @@ theme_override_font_sizes/font_size = 29
 text = "Score : 000000"
 horizontal_alignment = 1
 
-[node name="right button" type="TextureButton" parent="car/shake/camera/ui"]
+[node name="right button" type="TextureButton" parent="car/player/camera/ui"]
 modulate = Color(0, 0, 0, 1)
 offset_left = 1450.0
 offset_top = 391.0
@@ -253,7 +247,7 @@ texture_hover = ExtResource("6_eocjf")
 texture_disabled = ExtResource("6_eocjf")
 texture_focused = ExtResource("6_eocjf")
 
-[node name="left button" type="TextureButton" parent="car/shake/camera/ui"]
+[node name="left button" type="TextureButton" parent="car/player/camera/ui"]
 visible = false
 modulate = Color(0, 0, 0, 1)
 offset_left = 137.0
@@ -268,7 +262,7 @@ texture_hover = ExtResource("6_eocjf")
 texture_disabled = ExtResource("6_eocjf")
 texture_focused = ExtResource("6_eocjf")
 
-[node name="down button" type="TextureButton" parent="car/shake/camera/ui"]
+[node name="down button" type="TextureButton" parent="car/player/camera/ui"]
 modulate = Color(0, 0, 0, 1)
 offset_left = 852.0
 offset_top = 774.0
@@ -282,7 +276,7 @@ texture_hover = ExtResource("6_eocjf")
 texture_disabled = ExtResource("6_eocjf")
 texture_focused = ExtResource("6_eocjf")
 
-[node name="up button" type="TextureButton" parent="car/shake/camera/ui"]
+[node name="up button" type="TextureButton" parent="car/player/camera/ui"]
 visible = false
 modulate = Color(0, 0, 0, 1)
 offset_left = 752.0
@@ -297,40 +291,25 @@ texture_hover = ExtResource("6_eocjf")
 texture_disabled = ExtResource("6_eocjf")
 texture_focused = ExtResource("6_eocjf")
 
-[node name="Debug Ui" parent="car/shake/camera" instance=ExtResource("1_qc15p")]
+[node name="Debug Ui" parent="car/player/camera" instance=ExtResource("1_qc15p")]
 
-[node name="Menu" type="CanvasLayer" parent="car/shake/camera"]
+[node name="Menu" type="CanvasLayer" parent="car/player/camera"]
 
-[node name="Start Screen" parent="car/shake/camera/Menu" node_paths=PackedStringArray("Ui") instance=ExtResource("4_ho165")]
+[node name="Start Screen" parent="car/player/camera/Menu" node_paths=PackedStringArray("Ui") instance=ExtResource("4_ho165")]
 Ui = NodePath("../../ui")
 
-[node name="Game Over" type="CanvasLayer" parent="car/shake/camera"]
+[node name="Game Over" type="CanvasLayer" parent="car/player/camera"]
 
-[node name="Game Over" parent="car/shake/camera/Game Over" instance=ExtResource("8_us8ht")]
+[node name="Game Over" parent="car/player/camera/Game Over" instance=ExtResource("8_us8ht")]
 visible = false
 
-[node name="camera animation" type="AnimationPlayer" parent="car/shake"]
+[node name="camera animation" type="AnimationPlayer" parent="car/player"]
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_p5tel")
 }
 
-[node name="pedals" type="Node3D" parent="car"]
-script = ExtResource("9_btl65")
-
-[node name="brakes" parent="car/pedals" instance=ExtResource("7_35800")]
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0.555, -0.495, 0.789)
-
-[node name="pedal" parent="car/pedals/brakes" instance=ExtResource("10_nryx3")]
-transform = Transform3D(8.33333, 0, 0, 0, 8.33333, 0, 0, 0, 8.33333, -0.008, 0.825, 0.954)
-script = ExtResource("11_ir1op")
-
-[node name="gaz" parent="car/pedals" instance=ExtResource("7_35800")]
-transform = Transform3D(0.12, 0, 0, 0, 0.12, 0, 0, 0, 0.12, 0.332, -0.495, 0.789)
-
-[node name="pedal" parent="car/pedals/gaz" instance=ExtResource("10_nryx3")]
-transform = Transform3D(8.33333, 0, 0, 0, 8.33333, 0, 0, 0, 8.33333, 0.018, 0.825, 0.954)
-script = ExtResource("11_ir1op")
+[node name="pedals" parent="car" instance=ExtResource("9_5ktni")]
 
 [node name="radio system" type="Node3D" parent="car" node_paths=PackedStringArray("Simon")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.0784899, 0, 0.0861496)
@@ -355,39 +334,11 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0775591, -0.224532, 0
 [node name="blue" parent="car/radio system" instance=ExtResource("7_35800")]
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.072592, -0.222953, 0.477706)
 
-[node name="dashboard" type="Node3D" parent="car"]
+[node name="dashboard" parent="car" instance=ExtResource("13_3vq5l")]
 
-[node name="speed" type="Label3D" parent="car/dashboard" groups=["speed_label"]]
-transform = Transform3D(-0.535, 1.21053e-08, -4.51775e-08, 0, 0.51677, 0.138468, 4.67712e-08, 0.138468, -0.51677, 0.438, 0.0553542, 0.758292)
-modulate = Color(0.772549, 0.772549, 0.772549, 1)
-text = "00"
-font_size = 20
+[node name="steering" parent="car" instance=ExtResource("13_vw33e")]
 
-[node name="kmh" type="Label3D" parent="car/dashboard"]
-transform = Transform3D(-0.535, -1.21053e-08, 4.51775e-08, 0, 0.51677, 0.138468, -4.67712e-08, 0.138468, -0.51677, 0.363, 0.046, 0.760397)
-modulate = Color(0.545098, 0.545098, 0.545098, 1)
-text = "km/h"
-font_size = 10
-
-[node name="steering" type="Node3D" parent="car"]
-
-[node name="steering wheel" parent="car/steering" instance=ExtResource("11_8mxt4")]
-transform = Transform3D(1, 0, 0, 0, 0.988049, -0.154141, 0, 0.154141, 0.988049, 0.437, 0.01, 0.618)
-
-[node name="honk" parent="car/steering" instance=ExtResource("7_35800")]
-transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.437, 0.0178568, 0.596778)
-
-[node name="baby seat" type="Node3D" parent="car" node_paths=PackedStringArray("Belt", "Baby")]
-script = ExtResource("14_bxdrh")
-Belt = NodePath("belt")
-Baby = NodePath("baby")
-
-[node name="baby" parent="car/baby seat" instance=ExtResource("15_8fe52")]
-
-[node name="baby_interact" parent="car/baby seat/baby" instance=ExtResource("7_35800")]
-transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -0.476538, 0, -0.660791)
-
-[node name="belt" parent="car/baby seat" instance=ExtResource("16_ecnvp")]
+[node name="baby seat" parent="car" instance=ExtResource("17_4h7d0")]
 
 [node name="road" type="Node3D" parent="."]
 script = ExtResource("8_qpu7e")
@@ -409,14 +360,12 @@ metadata/_edit_lock_ = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -161.098)
 metadata/_edit_lock_ = true
 
-[connection signal="button_down" from="car/shake/camera/ui/right button" to="car/shake/camera" method="_on_right_button_down"]
-[connection signal="button_down" from="car/shake/camera/ui/left button" to="car/shake/camera" method="_on_left_button_down"]
-[connection signal="button_down" from="car/shake/camera/ui/down button" to="car/shake/camera" method="_on_down_button_down"]
-[connection signal="button_down" from="car/shake/camera/ui/up button" to="car/shake/camera" method="_on_up_button_down"]
-[connection signal="restart" from="car/shake/camera/Game Over/Game Over" to="." method="_on_game_over_restart"]
-[connection signal="animation_finished" from="car/shake/camera animation" to="car/shake/camera" method="_on_animation_animation_finished"]
-[connection signal="clicked" from="car/pedals/brakes" to="car/pedals" method="_on_brakes_clicked"]
-[connection signal="clicked" from="car/pedals/gaz" to="car/pedals" method="_on_gaz_clicked"]
+[connection signal="button_down" from="car/player/camera/ui/right button" to="car/player/camera" method="_on_right_button_down"]
+[connection signal="button_down" from="car/player/camera/ui/left button" to="car/player/camera" method="_on_left_button_down"]
+[connection signal="button_down" from="car/player/camera/ui/down button" to="car/player/camera" method="_on_down_button_down"]
+[connection signal="button_down" from="car/player/camera/ui/up button" to="car/player/camera" method="_on_up_button_down"]
+[connection signal="restart" from="car/player/camera/Game Over/Game Over" to="." method="_on_game_over_restart"]
+[connection signal="animation_finished" from="car/player/camera animation" to="car/player/camera" method="_on_animation_animation_finished"]
 [connection signal="clicked" from="car/radio system/radio" to="car/radio system" method="_on_radio_clicked"]
 [connection signal="clicked" from="car/radio system/red" to="." method="_on_red_clicked"]
 [connection signal="clicked" from="car/radio system/red" to="car/radio system" method="_on_red_clicked"]
@@ -426,4 +375,3 @@ metadata/_edit_lock_ = true
 [connection signal="clicked" from="car/radio system/green" to="car/radio system" method="_on_green_clicked"]
 [connection signal="clicked" from="car/radio system/blue" to="." method="_on_blue_clicked"]
 [connection signal="clicked" from="car/radio system/blue" to="car/radio system" method="_on_blue_clicked"]
-[connection signal="clicked" from="car/baby seat/baby/baby_interact" to="car/baby seat" method="_on_baby_interact_clicked"]
