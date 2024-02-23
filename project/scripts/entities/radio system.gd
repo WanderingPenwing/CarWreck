@@ -90,7 +90,7 @@ func simon_sequence() -> void :
 
 func check_4_simon() -> bool:
 	if simon_onplay == true:
-		Game.die("Your mum didn't teach to shut up when over people speak.\nLet Simon speaks !!")
+		Game.die("Your mum didn't teach to shut up when over people speak.\nLet Simon speaks !!",7)
 	
 	if len(input_radio) == 5:
 		for i in range(len(input_radio)):

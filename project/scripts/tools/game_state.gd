@@ -9,6 +9,10 @@ const FULLSCREEN_DELAY : float = 0.5
 @onready var sfx_bus : int = AudioServer.get_bus_index("Sfx")
 @onready var music_bus : int = AudioServer.get_bus_index("Music")
 
+const BEASTERY = ["Above speed limit", "Under spped limit", "Child run out of the car",
+				"Car accident right", "Car accident left", "Fall asleep", "Isteria",
+				"Interupt Simon", "Electrocuted", "The GOAT !!"]
+
 var volume : Dictionary = {
 	"master" : 50,
 	"sfx" : 50,
@@ -16,7 +20,7 @@ var volume : Dictionary = {
 }
 var fullscreen : bool = false
 var last_fullscreen_toggle : float = 0
-
+var deathiary = BEASTERY.map(func (number):return '?')
 
 func _ready() -> void :
 	load_state()
@@ -26,7 +30,8 @@ func _ready() -> void :
 
 func save_state() -> void :
 	var save_dict := { # Here you can put other variable to save
-		"volume" : volume
+		"volume" : volume,
+		"deathiary" : deathiary
 	}
 	var save_game := FileAccess.open(SAVE_FILE, FileAccess.WRITE)
 	var json_string := JSON.stringify(save_dict)
@@ -53,6 +58,8 @@ func load_state() -> void :
 		# If you need to add other variable to a save, load them here, but make a save with the variable before
 		# trying to load
 		volume = state_data["volume"]
+		deathiary = state_data ["deathiary"] 
+		
 
 
 

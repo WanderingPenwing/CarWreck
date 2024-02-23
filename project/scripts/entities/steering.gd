@@ -17,10 +17,10 @@ func _process(delta: float) -> void:
 	
 	
 	if World.global_position.x < -10 :
-		Game.die("Maybe a bit too much left no ?... it is not even the right side of the road...")
+		Game.die("Maybe a bit too much left no ?... it is not even the right side of the road...",4)
 	
 	if World.global_position.x > 10 :
-		Game.die("You crashed, in a gruesome accident, try to stay on the road next time...")
+		Game.die("You crashed, in a gruesome accident, try to stay on the road next time...",3)
 	
 	Game.Debug.print_right("wheel_angle : " + str(round(wheel_angle)), 4)
 

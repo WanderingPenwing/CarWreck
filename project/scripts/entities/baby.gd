@@ -29,7 +29,7 @@ func _process(delta: float) -> void :
 	if randf() > MISBEHAVE :
 		return
 	if state == "roaming" :
-		Game.die("Baby escaped from your car")
+		Game.die("Baby escaped from your car",2)
 		return
 	roam()
 	unbuckle()

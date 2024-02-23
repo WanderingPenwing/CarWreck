@@ -9,6 +9,8 @@ var car_target_velocity : int = 40
 @onready var Debug : Node = get_tree().get_first_node_in_group("debug")
 @onready var Score : Node = get_tree().get_first_node_in_group("score")
 @onready var GameOver : Node = get_tree().get_first_node_in_group("game_over")
+@onready var gamestate = get_node("/root/GameState")
+
 
 func _process(delta : float) -> void :
 	score += delta * 2.5
@@ -17,12 +19,14 @@ func _process(delta : float) -> void :
 	debug(delta)
 
 
-func die(reason: String) -> void :
+func die(reason: String, type: int) -> void :
 	GameOver.set_message(reason)
 	GameOver.set_score(score)
 	GameOver.show()
 	Score.hide()
 	get_tree().paused = true
+	gamestate.deathiary[type] = gamestate.BEASTERY[type]
+	gamestate.save_state()
 
 
 func _on_game_over_restart() -> void :
