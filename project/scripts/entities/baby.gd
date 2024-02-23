@@ -7,7 +7,7 @@ const ROAM : Array = [
 	{"position" : Vector3(0.055,-0.755,0.556), "rotation" : Vector3(13.1,-155.6,-5.9)}
 ]
 const MISBEHAVE : float = 0.002
-const BEHAVE_TIME : float = 3
+const BEHAVE_TIME : float = 5
 
 @export var Belt : Node
 @export var Baby : Node
@@ -19,12 +19,13 @@ var behaving : float = 0
 
 
 func _process(delta: float) -> void :
-	Game.Debug.print_left("Baby state : " + state, 5)
+	Game.Debug.print_right("Baby state : " + state, 2)
+	Game.Debug.print_right("Baby behave time : " + str(round(behaving*10)/10), 3)
 	if behaving > 0 :
 		behaving -= delta
+		return
 	if randf() > MISBEHAVE :
 		return
-	behaving = BEHAVE_TIME
 	if state == "roaming" :
 		Game.die("Baby escaped from your car")
 		return
@@ -37,6 +38,7 @@ func unbuckle() -> void :
 		return
 	state = "free"
 	Belt.hide()
+	behaving = BEHAVE_TIME
 
 
 func buckle() -> void :
@@ -44,6 +46,7 @@ func buckle() -> void :
 		return
 	state = "buckled"
 	Belt.show()
+	behaving = BEHAVE_TIME
 
 
 func sit() -> void :
@@ -52,6 +55,7 @@ func sit() -> void :
 	state = "free"
 	Baby.position = SIT["position"]
 	Baby.rotation_degrees = SIT["rotation"]
+	behaving = BEHAVE_TIME
 
 
 func roam() -> void :
@@ -62,6 +66,7 @@ func roam() -> void :
 	var r : int = randi_range(0, len(ROAM) - 1)
 	Baby.position = ROAM[r]["position"]
 	Baby.rotation_degrees = ROAM[r]["rotation"]
+	behaving = BEHAVE_TIME
 
 
 func _on_baby_interact_clicked() -> void:

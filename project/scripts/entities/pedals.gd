@@ -10,7 +10,7 @@ extends Node3D
 @onready var Game : Node = get_tree().get_first_node_in_group("game")
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	SpeedLabel.text = str(round(Game.car_velocity))
 	
 	if randf() < chance_update_velocity:
