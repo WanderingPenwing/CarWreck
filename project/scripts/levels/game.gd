@@ -19,6 +19,9 @@ var car_target_velocity : int = 40
 var sleep : float = 0
 var epilepsi : float = 0
 var curent_music : String
+var sequence : Array
+
+
 
 @onready var Transition : Node = get_node("/root/SceneTransition")
 @onready var SpeedLabel : Node = get_tree().get_first_node_in_group("speed_label")
@@ -82,13 +85,6 @@ func _on_honk_clicked() -> void :
 	print("honk")
 
 
-func _on_radio_clicked() -> void :
-	var sequence : Array = []
-	for i in range(5):
-		sequence.push_back(randi_range(1,4))
-	# Play sequence
-	print(sequence)
-
 
 func _on_game_over_restart() -> void :
 	var game : Resource = load("res://scenes/level_zero.tscn")
@@ -99,25 +95,10 @@ func _on_baby_clicked() -> void :
 	print("baby touched")
 	die("you touched the baby")
 
+
 func debug(delta : float) -> void :
 	Debug.print_left("Press F3 to close the debug menu", 1)
 	Debug.print_left("Car velocity " + str(round(car_velocity)) + " km/h", 2)
 	Debug.print_left("Car target velocity " + str(round(car_target_velocity)) + " km/h", 3)
 	Debug.print_right("FPS : " + str(round(1/delta)), 0)
 	Debug.update_text()
-
-
-func _on_red_clicked() -> void :
-	pass # Replace with function body.
-
-
-func _on_yellow_clicked() -> void :
-	pass # Replace with function body.
-
-
-func _on_green_clicked() -> void :
-	pass # Replace with function body.
-
-
-func _on_blue_clicked() -> void :
-	pass # Replace with function body.

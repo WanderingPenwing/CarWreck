@@ -403,7 +403,7 @@ metadata/_edit_lock_ = true
 [connection signal="clicked" from="car/pedals/brakes" to="." method="_on_brakes_clicked"]
 [connection signal="clicked" from="car/pedals/gaz" to="." method="_on_gaz_clicked"]
 [connection signal="clicked" from="car/baby" to="." method="_on_baby_clicked"]
-[connection signal="clicked" from="car/radio system/radio" to="." method="_on_radio_clicked"]
+[connection signal="clicked" from="car/radio system/radio" to="car/radio system" method="_on_radio_clicked"]
 [connection signal="clicked" from="car/radio system/red" to="." method="_on_red_clicked"]
 [connection signal="clicked" from="car/radio system/red" to="car/radio system" method="_on_red_clicked"]
 [connection signal="clicked" from="car/radio system/yellow" to="." method="_on_yellow_clicked"]
