@@ -38,6 +38,6 @@ func _on_gaz_clicked() -> void :
 
 func check_4_kill() -> void :
 	if Game.car_velocity > max_car_velocity:
-		Game.die("You were going above the speed limit: " + str(max_car_velocity)+ " km/h (fuck USA with mph)\nThe police caught you !")
+		Game.die("You were going above the speed limit: " + str(max_car_velocity)+ " km/h (sorry USA with mph)\nThe police caught you !")
 	if Game.car_velocity < min_car_velocity:
-		Game.die("You were going under the speed limit: " + str(min_car_velocity)+ " km/h (fuck USA with mph)\nThe baby shat himself.")
+		Game.die("You were going under the speed limit: " + str(min_car_velocity)+ " km/h (sorry USA with mph)\nThe baby shat himself.")

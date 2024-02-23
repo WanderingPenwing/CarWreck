@@ -310,11 +310,10 @@ libraries = {
 
 [node name="pedals" parent="car" instance=ExtResource("9_5ktni")]
 
-[node name="radio system" type="Node3D" parent="car" node_paths=PackedStringArray("Simon", "Game")]
+[node name="radio system" type="Node3D" parent="car" node_paths=PackedStringArray("Simon")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.0784899, 0, 0.0861496)
 script = ExtResource("12_qmdvi")
 Simon = NodePath("simon display")
-Game = NodePath("../..")
 
 [node name="simon display" parent="car/radio system" instance=ExtResource("12_8tiff")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.00998297, -0.254991, 0.538732)
