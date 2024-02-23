@@ -38,18 +38,19 @@ func _on_radio_clicked() -> void :
 	simon_sequence()
 	
 
-func simon_sequence():
+func simon_sequence() -> void :
 	if index_simon >= len(sequence):
 		simon_onplay = false
 		return
 	Simon.display(color[sequence[index_simon]])
 	index_simon += 1
-	var timer = get_tree().create_timer(1)
+	var timer : SceneTreeTimer = get_tree().create_timer(1)
 	timer.timeout.connect(simon_sequence)
 	
-func check_4_simon():
+func check_4_simon() -> bool :
 	if len(input_radio) == 5:
 		for i in range(len(input_radio)):
 			if input_radio[i] != sequence[i]:
 				return false
 		return true
+	return false
