@@ -1,5 +1,6 @@
 extends Node3D
 
+const CLICK : Resource = preload("res://assets/sounds/sfx/entities/click.mp3")
 const SIT : Dictionary = {"position" : Vector3(0,0,0), "rotation" : Vector3(0,0,0)}
 const ROAM : Array = [
 	{"position" : Vector3(0.345,-0.14,0.556), "rotation" : Vector3(13.1,-127.6,9.6)},
@@ -16,6 +17,7 @@ var state : String = "buckled"
 var behaving : float = 0
 
 @onready var Game : Node = get_tree().get_first_node_in_group("game")
+@onready var SoundManager : Node = get_node("/root/SoundsManager")
 
 
 func _process(delta: float) -> void :
@@ -38,6 +40,7 @@ func unbuckle() -> void :
 		return
 	state = "free"
 	Belt.hide()
+	SoundManager.play_sound(CLICK, self, "Sfx", randf())
 	behaving = BEHAVE_TIME
 
 
@@ -46,6 +49,7 @@ func buckle() -> void :
 		return
 	state = "buckled"
 	Belt.show()
+	SoundManager.play_sound(CLICK, self, "Sfx")
 	behaving = BEHAVE_TIME
 
 
