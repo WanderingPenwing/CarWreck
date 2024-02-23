@@ -1,15 +1,8 @@
 extends Node3D
 
-const MUSICS = {"name1":"lullaby", "name2":"metal","name3" : "normal"}
-
 var score : float = 0
 var car_velocity : float = 50   # vitesse de la voiture en km/h
 var car_target_velocity : int = 40
-
-var sleep : float = 0
-var epilepsi : float = 0
-var curent_music : String
-var sequence : Array
 
 @onready var Transition : Node = get_node("/root/SceneTransition")
 @onready var SpeedLabel : Node = get_tree().get_first_node_in_group("speed_label")
@@ -22,16 +15,6 @@ func _process(delta : float) -> void :
 	Score.text = "Score : " + "0".repeat(8 - floor(log(max(1,score*5))/log(10))) + str(floor(score)*5)
 	
 	debug(delta)
-
-
-func radio ()->void:
-	if MUSICS[curent_music] == "lullaby":
-		pass
-		## Mettre le fondu ici.
-		
-	elif MUSICS[curent_music] == "metal":
-		pass
-		## Mettre l'epilepsi
 
 
 func die(reason: String) -> void :
