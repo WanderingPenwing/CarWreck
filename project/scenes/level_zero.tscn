@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=24 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -8,14 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://b6ed4w5s5ot5c" path="res://scenes/start_screen.tscn" id="4_ho165"]
 [ext_resource type="Texture2D" uid="uid://cqdk55leyqiej" path="res://assets/images/menu/arrow.png" id="6_eocjf"]
 [ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="7_35800"]
-[ext_resource type="Script" path="res://scripts/env/road.gd" id="8_qpu7e"]
 [ext_resource type="PackedScene" uid="uid://ds5doom2e1j8x" path="res://prefabs/models/game_over.tscn" id="8_us8ht"]
 [ext_resource type="PackedScene" uid="uid://dg6inuw78j5up" path="res://prefabs/entities/pedals.tscn" id="9_5ktni"]
-[ext_resource type="PackedScene" uid="uid://byx6me61o50od" path="res://prefabs/models/road_portion.tscn" id="9_d0pw5"]
 [ext_resource type="PackedScene" uid="uid://cs1tc2jj7ctle" path="res://prefabs/entities/simon.tscn" id="12_8tiff"]
 [ext_resource type="Script" path="res://scripts/entities/radio system.gd" id="12_qmdvi"]
 [ext_resource type="PackedScene" uid="uid://68cceeip4fg" path="res://prefabs/entities/dashboard.tscn" id="13_3vq5l"]
 [ext_resource type="PackedScene" uid="uid://1iyv7anqt2wt" path="res://prefabs/entities/steering.tscn" id="13_vw33e"]
+[ext_resource type="PackedScene" uid="uid://co43s7bp8fpc0" path="res://prefabs/env/road.tscn" id="16_udowj"]
 [ext_resource type="PackedScene" uid="uid://bfdhjujdxdqxa" path="res://prefabs/entities/baby_seat.tscn" id="17_4h7d0"]
 
 [sub_resource type="Environment" id="Environment_8qcyu"]
@@ -340,25 +339,7 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.072592, -0.222953, 0
 
 [node name="baby seat" parent="car" instance=ExtResource("17_4h7d0")]
 
-[node name="road" type="Node3D" parent="."]
-script = ExtResource("8_qpu7e")
-metadata/_edit_lock_ = true
-
-[node name="road portion" parent="road" instance=ExtResource("9_d0pw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0168586, 0.716095)
-metadata/_edit_lock_ = true
-
-[node name="road portion2" parent="road" instance=ExtResource("9_d0pw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 162.94)
-metadata/_edit_lock_ = true
-
-[node name="road portion3" parent="road" instance=ExtResource("9_d0pw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 325.273)
-metadata/_edit_lock_ = true
-
-[node name="road portion4" parent="road" instance=ExtResource("9_d0pw5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -161.098)
-metadata/_edit_lock_ = true
+[node name="road" parent="." instance=ExtResource("16_udowj")]
 
 [connection signal="button_down" from="car/player/camera/ui/right button" to="car/player/camera" method="_on_right_button_down"]
 [connection signal="button_down" from="car/player/camera/ui/left button" to="car/player/camera" method="_on_left_button_down"]

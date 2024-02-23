@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://55m7b56k2vh6" path="res://assets/models/steering wheel.glb" id="2_8v836"]
 [ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="3_4spyt"]
 
-[node name="steering" type="Node3D"]
+[node name="steering" type="Node3D" node_paths=PackedStringArray("Wheel")]
 script = ExtResource("1_uy7xg")
+Wheel = NodePath("steering wheel")
 
 [node name="steering wheel" parent="." instance=ExtResource("2_8v836")]
 transform = Transform3D(1, 0, 0, 0, 0.988049, -0.154141, 0, 0.154141, 0.988049, 0.437, 0.01, 0.618)
@@ -18,3 +19,7 @@ transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.588418, 0.0545779, 0.
 
 [node name="right" parent="." instance=ExtResource("3_4spyt")]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.254917, 0.0627135, 0.606252)
+
+[connection signal="clicked" from="honk" to="." method="_on_honk_clicked"]
+[connection signal="clicked" from="left" to="." method="_on_left_clicked"]
+[connection signal="clicked" from="right" to="." method="_on_right_clicked"]

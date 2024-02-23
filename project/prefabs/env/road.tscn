@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://co43s7bp8fpc0"]
+
+[ext_resource type="Script" path="res://scripts/env/road.gd" id="1_mo6mc"]
+[ext_resource type="PackedScene" uid="uid://byx6me61o50od" path="res://prefabs/models/road_portion.tscn" id="2_7kes4"]
+
+[node name="road" type="Node3D" groups=["world"]]
+script = ExtResource("1_mo6mc")
+metadata/_edit_lock_ = true
+
+[node name="road portion" parent="." instance=ExtResource("2_7kes4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0168586, 0.716095)
+metadata/_edit_lock_ = true
+
+[node name="road portion2" parent="." instance=ExtResource("2_7kes4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 162.94)
+metadata/_edit_lock_ = true
+
+[node name="road portion3" parent="." instance=ExtResource("2_7kes4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 325.273)
+metadata/_edit_lock_ = true
+
+[node name="road portion4" parent="." instance=ExtResource("2_7kes4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -161.098)
+metadata/_edit_lock_ = true
