@@ -17,7 +17,6 @@ var state : String = "buckled"
 var behaving : float = 0
 
 @onready var Game : Node = get_tree().get_first_node_in_group("game")
-@onready var SoundManager : Node = get_node("/root/SoundsManager")
 
 
 func _process(delta: float) -> void :
@@ -40,7 +39,7 @@ func unbuckle() -> void :
 		return
 	state = "free"
 	Belt.hide()
-	SoundManager.play_sound(CLICK, self, "Sfx", randf())
+	SoundsManager.play_sound(CLICK, self, "Sfx", randf())
 	behaving = BEHAVE_TIME
 
 
@@ -49,7 +48,7 @@ func buckle() -> void :
 		return
 	state = "buckled"
 	Belt.show()
-	SoundManager.play_sound(CLICK, self, "Sfx")
+	SoundsManager.play_sound(CLICK, self, "Sfx")
 	behaving = BEHAVE_TIME
 
 

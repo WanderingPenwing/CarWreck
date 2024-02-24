@@ -4,12 +4,10 @@ var score : float = 0
 var car_velocity : float = 50   # vitesse de la voiture en km/h
 var car_target_velocity : int = 40
 
-@onready var Transition : Node = get_node("/root/SceneTransition")
 @onready var SpeedLabel : Node = get_tree().get_first_node_in_group("speed_label")
 @onready var Debug : Node = get_tree().get_first_node_in_group("debug")
 @onready var Score : Node = get_tree().get_first_node_in_group("score")
 @onready var GameOver : Node = get_tree().get_first_node_in_group("game_over")
-@onready var Gamestate : Node= get_node("/root/GameState")
 
 
 func _process(delta : float) -> void :
@@ -25,13 +23,13 @@ func die(reason: String, type: int) -> void :
 	GameOver.show()
 	Score.hide()
 	get_tree().paused = true
-	Gamestate.deathiary[type] = Gamestate.DEATHIARY[type]
-	Gamestate.save_state()
+	GameState.deathiary[type] = GameState.DEATHIARY[type]
+	GameState.save_state()
 
 
 func _on_game_over_restart() -> void :
 	var game : Resource = load("res://scenes/level_zero.tscn")
-	Transition.change_to_scene(game)
+	SceneTransition.change_to_scene(game)
 
 
 func debug(delta : float) -> void :

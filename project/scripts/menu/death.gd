@@ -3,16 +3,14 @@ extends Control
 @export var Back : Node
 @export var DeathiaryList : Node
 
-@onready var Gamestate : Node = get_node("/root/GameState")
-
 const death_label = preload("res://prefabs/menu/death_type.tscn")
 
 var save : Array
 
 
 func _ready() -> void :
-	var generate : int = len(Gamestate.DEATHIARY)
-	save = Gamestate.deathiary
+	var generate : int = len(GameState.DEATHIARY)
+	save = GameState.deathiary
 	for i in range(generate):
 		var label : Node = death_label.instantiate()
 		DeathiaryList.add_child(label)

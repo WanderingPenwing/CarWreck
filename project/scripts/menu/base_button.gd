@@ -14,8 +14,6 @@ const DEFAULT_SCALE : Vector2 = Vector2(1.0, 1.0)
 const HOVER_SCALE : Vector2 = Vector2(1.2, 1.2)
 const ANIMATION_TIME : float = 0.1
 
-@onready var SoundManager : Node = get_node("/root/SoundsManager") # Get global node to play sounds
-
 signal activate(name : String) # Activation signal for the parent to handle the actions
 
 var selected : bool = false
@@ -78,7 +76,7 @@ func _process(delta : float) -> void :
 			return
 		button_was_activated = true
 		activate.emit(button_title)
-		SoundManager.play_sound(bip, SoundManager, "Sfx")
+		SoundsManager.play_sound(bip, SoundsManager, "Sfx")
 		var tween : Tween = create_tween() # Click animation
 		tween.tween_property(self, "scale", DEFAULT_SCALE, ANIMATION_TIME)
 		tween.tween_property(self, "scale", HOVER_SCALE, ANIMATION_TIME)
@@ -103,7 +101,7 @@ func become_selected(mute : bool = false) -> void :
 		next.become_selected()
 		return
 	if not mute :
-		SoundManager.play_sound(boop, SoundManager, "Sfx")
+		SoundsManager.play_sound(boop, SoundsManager, "Sfx")
 	selected = true
 	time_since_selected = 0.0
 	var tween : Tween = create_tween() # To become bigger (show that the button is selected)
@@ -124,7 +122,7 @@ func _on_button_pressed() -> void : # Mouse click
 	if disabled :
 		return
 	activate.emit(button_title)
-	SoundManager.play_sound(bip, SoundManager, "Sfx")
+	SoundsManager.play_sound(bip, SoundsManager, "Sfx")
 	var tween : Tween = create_tween() # Creates a new tween
 	tween.tween_property(self, "scale", DEFAULT_SCALE, ANIMATION_TIME)
 	tween.tween_property(self, "scale", HOVER_SCALE, ANIMATION_TIME)
