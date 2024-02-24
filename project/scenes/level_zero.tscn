@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=24 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://km1ruitv2bms" path="res://prefabs/entities/radio_system.tscn" id="10_fafvw"]
 [ext_resource type="PackedScene" uid="uid://68cceeip4fg" path="res://prefabs/entities/dashboard.tscn" id="13_3vq5l"]
 [ext_resource type="PackedScene" uid="uid://1iyv7anqt2wt" path="res://prefabs/entities/steering.tscn" id="13_vw33e"]
+[ext_resource type="PackedScene" uid="uid://c8e7k2e53snc4" path="res://prefabs/entities/gps.tscn" id="15_d8mj3"]
 [ext_resource type="PackedScene" uid="uid://co43s7bp8fpc0" path="res://prefabs/env/road.tscn" id="16_udowj"]
 [ext_resource type="PackedScene" uid="uid://bfdhjujdxdqxa" path="res://prefabs/entities/baby_seat.tscn" id="17_4h7d0"]
 
@@ -322,6 +323,9 @@ libraries = {
 [node name="steering" parent="car" instance=ExtResource("13_vw33e")]
 
 [node name="baby seat" parent="car" instance=ExtResource("17_4h7d0")]
+
+[node name="GPS" parent="car" instance=ExtResource("15_d8mj3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27752, 2.7977)
 
 [node name="road" parent="." instance=ExtResource("16_udowj")]
 

@@ -9,9 +9,9 @@ const FULLSCREEN_DELAY : float = 0.5
 @onready var sfx_bus : int = AudioServer.get_bus_index("Sfx")
 @onready var music_bus : int = AudioServer.get_bus_index("Music")
 
-const DEATHIARY : Array = ["Above speed limit", "Under spped limit", "Child run out of the car",
+const DEATHIARY : Array = ["Above speed limit", "Under speed limit", "Child run out of the car",
 				"Car accident right", "Car accident left", "Fall asleep", "Isteria",
-				"Interupt Simon", "Electrocuted", "The GOAT !!"]
+				"Interupt Simon", "Can't trust technology", "The GOAT !!"]
 
 var volume : Dictionary = {
 	"master" : 50,

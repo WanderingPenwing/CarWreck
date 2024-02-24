@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8e7k2e53snc4"]
+
+[ext_resource type="Script" path="res://scripts/entities/GPS.gd" id="1_ff0wm"]
+[ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="2_ksq22"]
+
+[node name="GPS" type="Node3D"]
+script = ExtResource("1_ff0wm")
+
+[node name="GPS_Button" parent="." instance=ExtResource("2_ksq22")]
+
+[connection signal="clicked" from="GPS_Button" to="." method="_on_gps_button_clicked"]
