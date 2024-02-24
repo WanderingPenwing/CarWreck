@@ -5,11 +5,9 @@ extends Node3D
 const SOFT = 0
 const POP = 1
 const HARD = 2
-
 const MUSICS = [[0, preload('res://assets/sounds/Lullaby.mp3')],
 				[1, preload('res://assets/sounds/Pop.mp3')],
 				[2, preload('res://assets/sounds/Rock.mp3')]]
-
 const SOUNDS = {
 	"red" : preload("res://assets/sounds/sfx/entities/simon/red.mp3"),
 	"blue" : preload("res://assets/sounds/sfx/entities/simon/blue.mp3"),
@@ -18,23 +16,21 @@ const SOUNDS = {
 	"wrong" : preload("res://assets/sounds/sfx/entities/simon/wrong.mp3")
 }
 const SIMON_DELAY : float = 0.6
-
-const color : Array = ['green', 'red', 'yellow', 'blue']
+const COLOR : Array = ['green', 'red', 'yellow', 'blue']
+const SLEEP_SPEED : float = 0.03
+const EPILEPSY_SPEED : float = 0.03
+const IMMUNE_TIME : float = 10
+const CHANGE_RADIO_PROBA : float = 0.0005
 
 var input_radio : Array
 var sequence : Array = []
 var index_simon : int = 0
 var simon_onplay : bool = false
-
 # Relatives to effects of the radio
 var sleep : float = 0
 var epilepsy : float = 0
-
-const SLEEP_SPEED : float = 0.03
-const EPILEPSY_SPEED : float = 0.03
-const EFFECT_DELAY : int = 2
-
 var current_music : int 
+var immune : float = IMMUNE_TIME
 
 @onready var Debug : Node = get_tree().get_first_node_in_group("debug")
 @onready var Game : Node = get_tree().get_first_node_in_group("game")
@@ -43,50 +39,57 @@ var current_music : int
 
 
 func _ready () -> void:
-	change_current_music()
+	change_current_music(POP)
 
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	Debug.print_left("Current music type : " + str(current_music), 4)
 	Debug.print_left("Sleepy : " + str(sleep), 5)
 	Debug.print_left("Excited : " + str(epilepsy), 6)
 	
-	Excited.color.a = epilepsy
-	Sleepy.color.a = sleep
+	Excited.color.a = epilepsy * 0.8
+	Sleepy.color.a = sleep * 0.8
+	
+	if simon_onplay :
+		effect_radio(delta)
+		return
+	if immune > 0 :
+		immune -= delta
+		return
+	if randf() <= CHANGE_RADIO_PROBA :
+		change_current_music()
+		immune = IMMUNE_TIME
 
 
-func change_current_music() -> void:
+func change_current_music(type : int = -1) -> void:
 	SoundsManager.clear_music()
 	var previous_music : int = current_music
-	while previous_music == current_music :
+	while not(previous_music != current_music and (type == -1 or type == MUSICS[current_music][0])) :
 		current_music = randi_range(0,len(MUSICS)-1)
-	
+	epilepsy = 0
+	sleep = 0
 	SoundsManager.play_sound(MUSICS[current_music][1],SoundsManager, 'Music', 0.1, false, true)
-	effect_radio()
 
 
-func effect_radio ()->void:
+func effect_radio (delta : float) -> void:
 	if MUSICS[current_music][0] == SOFT:
-		sleep += SLEEP_SPEED
+		sleep += SLEEP_SPEED * delta
 		
 	elif MUSICS[current_music][0] == HARD:
-		epilepsy += EPILEPSY_SPEED
+		epilepsy += EPILEPSY_SPEED * delta
 	
 	if sleep > 1:
 		Game.die("The music is a biiit too soft... You fall asleep.\nGod is driving you to heaven.", 5)
 	if epilepsy > 1:
 		Game.die("Maybe turn down the music (or slow down on coffee) : You did an epilepsy crisis, dude !", 6)
-	
-	var timer : SceneTreeTimer = get_tree().create_timer(EFFECT_DELAY)
-	timer.timeout.connect(effect_radio)
 
 
 func simon_sequence() -> void :
 	if index_simon >= len(sequence):
 		simon_onplay = false
 		return
-	Simon.display(color[sequence[index_simon]])
-	SoundsManager.play_sound(SOUNDS[color[sequence[index_simon]]], self, 'Sfx')
+	Simon.display(COLOR[sequence[index_simon]])
+	SoundsManager.play_sound(SOUNDS[COLOR[sequence[index_simon]]], self, 'Sfx')
 	index_simon += 1
 	var timer : SceneTreeTimer = get_tree().create_timer(SIMON_DELAY)
 	timer.timeout.connect(simon_sequence)

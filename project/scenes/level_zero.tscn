@@ -343,7 +343,7 @@ libraries = {
 [node name="baby seat" parent="car" instance=ExtResource("17_4h7d0")]
 
 [node name="GPS" parent="car" instance=ExtResource("15_d8mj3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27752, 2.7977)
+transform = Transform3D(-1.66103e-08, 0, 0.38, 0, 0.38, 0, -0.38, 0, -1.66103e-08, 5.90086e-05, 0.0194894, 0.72955)
 
 [node name="road" parent="." instance=ExtResource("16_udowj")]
 

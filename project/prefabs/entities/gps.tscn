@@ -1,14 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://c8e7k2e53snc4"]
+[gd_scene load_steps=8 format=3 uid="uid://c8e7k2e53snc4"]
 
 [ext_resource type="Script" path="res://scripts/entities/GPS.gd" id="1_ff0wm"]
 [ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="2_ksq22"]
+[ext_resource type="Texture2D" uid="uid://g55s78qxc2wv" path="res://assets/images/entities/gps.jpg" id="3_8cf0b"]
+[ext_resource type="Theme" uid="uid://cqr0axdb4bodp" path="res://assets/themes/base.tres" id="4_i7htp"]
 
-[node name="GPS" type="Node3D" node_paths=PackedStringArray("GpsTimer")]
+[sub_resource type="PlaneMesh" id="PlaneMesh_dhlil"]
+size = Vector2(0.5, 0.35)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_lgmes"]
+viewport_path = NodePath("ui")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nupwr"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_lgmes")
+
+[node name="GPS" type="Node3D" node_paths=PackedStringArray("GpsTimer", "Problem", "Progress")]
 script = ExtResource("1_ff0wm")
-GpsTimer = NodePath("Timer")
+GpsTimer = NodePath("timer")
+Problem = NodePath("ui/bg/problem")
+Progress = NodePath("ui/bg/problem/progress")
 
-[node name="GPS_Button" parent="." instance=ExtResource("2_ksq22")]
+[node name="button" parent="." instance=ExtResource("2_ksq22")]
+transform = Transform3D(0.635, 0, 0, 0, 0.635, 0, 0, 0, 0.635, 0, 0, 0)
 
-[node name="Timer" type="Timer" parent="."]
+[node name="timer" type="Timer" parent="."]
 
-[connection signal="clicked" from="GPS_Button" to="." method="_on_gps_button_clicked"]
+[node name="screen" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, 4.37114e-08, 1.91069e-15, -1, -1, -4.37114e-08, -4.37114e-08, 0.00811583, 0, 0)
+mesh = SubResource("PlaneMesh_dhlil")
+surface_material_override/0 = SubResource("StandardMaterial3D_nupwr")
+
+[node name="ui" type="SubViewport" parent="."]
+render_target_update_mode = 4
+
+[node name="bg" type="TextureRect" parent="ui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_8cf0b")
+
+[node name="problem" type="VBoxContainer" parent="ui/bg"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -64.5
+offset_right = 200.0
+offset_bottom = 64.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="lost" type="Label" parent="ui/bg/problem"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "Lost..."
+horizontal_alignment = 1
+
+[node name="progress" type="ProgressBar" parent="ui/bg/problem"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("4_i7htp")
+value = 50.0
+
+[node name="shade" type="ColorRect" parent="ui"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.317647)
+
+[connection signal="clicked" from="button" to="." method="_on_button_clicked"]
