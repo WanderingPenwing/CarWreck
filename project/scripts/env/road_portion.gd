@@ -5,8 +5,8 @@ extends Node3D
 @export var min_clouds : int = 15
 @export var height : int = 60
 
-
-var Cloud : Resource = preload("res://prefabs/models/cloud.tscn")
+const Goat : Resource = preload("res://prefabs/entities/goat.tscn")
+const Cloud : Resource = preload("res://prefabs/models/cloud.tscn")
 
 func _ready() -> void :
 	#var max_x = Road.get_node("").get_aabb()
@@ -19,3 +19,10 @@ func _ready() -> void :
 		cloud.position.x = randi_range(-200, 200)
 		cloud.position.z = randi_range(-100, 100)
 
+
+func spawn_goat() -> void :
+	var goat : Node = Goat.instantiate()
+	self.add_child(goat)
+	goat.position.x = randi_range(-5, 5)
+	goat.position.z = randi_range(-5, 5)
+	goat.rotation_degrees.y = randf_range(-180, 180)

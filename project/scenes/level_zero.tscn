@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=25 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -172,6 +172,9 @@ _data = {
 "up": SubResource("Animation_eqnxb")
 }
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qt1t"]
+size = Vector3(2.02008, 1, 2.74261)
+
 [node name="game" type="Node3D" groups=["game"]]
 script = ExtResource("1_i31kb")
 
@@ -344,6 +347,12 @@ libraries = {
 
 [node name="GPS" parent="car" instance=ExtResource("15_d8mj3")]
 transform = Transform3D(-1.66103e-08, 0, 0.38, 0, 0.38, 0, -0.38, 0, -1.66103e-08, 5.90086e-05, 0.0194894, 0.72955)
+
+[node name="car_body" type="Area3D" parent="car" groups=["car_body"]]
+
+[node name="collision" type="CollisionShape3D" parent="car/car_body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0198059, 0, 0.0357971)
+shape = SubResource("BoxShape3D_3qt1t")
 
 [node name="road" parent="." instance=ExtResource("16_udowj")]
 

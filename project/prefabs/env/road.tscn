@@ -9,16 +9,28 @@ metadata/_edit_lock_ = true
 
 [node name="road portion" parent="." instance=ExtResource("2_7kes4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0168586, 0.716095)
+max_clouds = 6
+min_clouds = 15
+height = 60
 metadata/_edit_lock_ = true
 
 [node name="road portion2" parent="." instance=ExtResource("2_7kes4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 162.94)
+max_clouds = 6
+min_clouds = 15
+height = 60
 metadata/_edit_lock_ = true
 
 [node name="road portion3" parent="." instance=ExtResource("2_7kes4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 325.273)
+max_clouds = 6
+min_clouds = 15
+height = 60
 metadata/_edit_lock_ = true
 
 [node name="road portion4" parent="." instance=ExtResource("2_7kes4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -161.098)
+max_clouds = 6
+min_clouds = 15
+height = 60
 metadata/_edit_lock_ = true

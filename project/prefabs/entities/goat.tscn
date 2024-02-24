@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://br1a1vmlo8dd2"]
+
+[ext_resource type="Script" path="res://scripts/entities/goat.gd" id="1_5wiif"]
+[ext_resource type="PackedScene" uid="uid://cvpieacygut6x" path="res://assets/models/goat.glb" id="1_32xgv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5loe"]
+size = Vector3(13.5187, 1.18958, 13.4241)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6ajj3"]
+
+[node name="Goat" type="Node3D"]
+script = ExtResource("1_5wiif")
+
+[node name="goat" parent="." instance=ExtResource("1_32xgv")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.178088, 1.57388, 0)
+
+[node name="goat honk" type="Area3D" parent="." groups=["goat_honk"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.57388, 0)
+
+[node name="collision" type="CollisionShape3D" parent="goat honk"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -0.192642, 0.0947876, -0.141438)
+shape = SubResource("BoxShape3D_d5loe")
+
+[node name="goat collide" type="Area3D" parent="." groups=["goat_collide"]]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 1.57388, 0)
+
+[node name="collision" type="CollisionShape3D" parent="goat collide"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+shape = SubResource("BoxShape3D_6ajj3")
+
+[connection signal="area_entered" from="goat collide" to="." method="_on_goat_collide_area_entered"]

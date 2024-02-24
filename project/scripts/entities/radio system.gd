@@ -20,7 +20,7 @@ const COLOR : Array = ['green', 'red', 'yellow', 'blue']
 const SLEEP_SPEED : float = 0.03
 const EPILEPSY_SPEED : float = 0.03
 const IMMUNE_TIME : float = 10
-const CHANGE_RADIO_PROBA : float = 0.0005
+const CHANGE_RADIO_PROBA : float = 0.0006
 
 var input_radio : Array
 var sequence : Array = []
@@ -47,11 +47,11 @@ func _process(delta: float) -> void:
 	Debug.print_left("Sleepy : " + str(sleep), 5)
 	Debug.print_left("Excited : " + str(epilepsy), 6)
 	
+	effect_radio(delta)
 	Excited.color.a = epilepsy * 0.8
 	Sleepy.color.a = sleep * 0.8
 	
 	if simon_onplay :
-		effect_radio(delta)
 		return
 	if immune > 0 :
 		immune -= delta
