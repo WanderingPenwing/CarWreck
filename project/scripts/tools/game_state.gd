@@ -9,7 +9,7 @@ const FULLSCREEN_DELAY : float = 0.5
 @onready var sfx_bus : int = AudioServer.get_bus_index("Sfx")
 @onready var music_bus : int = AudioServer.get_bus_index("Music")
 
-const BEASTERY = ["Above speed limit", "Under spped limit", "Child run out of the car",
+const DEATHIARY : Array = ["Above speed limit", "Under spped limit", "Child run out of the car",
 				"Car accident right", "Car accident left", "Fall asleep", "Isteria",
 				"Interupt Simon", "Electrocuted", "The GOAT !!"]
 
@@ -20,7 +20,7 @@ var volume : Dictionary = {
 }
 var fullscreen : bool = false
 var last_fullscreen_toggle : float = 0
-var deathiary = BEASTERY.map(func (number):return '?')
+var deathiary : Array = DEATHIARY.map(func (_txt : String) -> String : return '?')
 
 func _ready() -> void :
 	load_state()

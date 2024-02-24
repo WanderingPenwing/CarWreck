@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=23 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -7,11 +7,10 @@
 [ext_resource type="Script" path="res://scripts/player/shake.gd" id="3_v4wc3"]
 [ext_resource type="PackedScene" uid="uid://b6ed4w5s5ot5c" path="res://scenes/start_screen.tscn" id="4_ho165"]
 [ext_resource type="Texture2D" uid="uid://cqdk55leyqiej" path="res://assets/images/menu/arrow.png" id="6_eocjf"]
-[ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="7_35800"]
 [ext_resource type="PackedScene" uid="uid://ds5doom2e1j8x" path="res://prefabs/models/game_over.tscn" id="8_us8ht"]
 [ext_resource type="PackedScene" uid="uid://dg6inuw78j5up" path="res://prefabs/entities/pedals.tscn" id="9_5ktni"]
-[ext_resource type="PackedScene" uid="uid://cs1tc2jj7ctle" path="res://prefabs/entities/simon.tscn" id="12_8tiff"]
-[ext_resource type="Script" path="res://scripts/entities/radio system.gd" id="12_qmdvi"]
+[ext_resource type="PackedScene" uid="uid://bhqr8hlgnvh4a" path="res://prefabs/menu/deathiary.tscn" id="9_s5bmr"]
+[ext_resource type="PackedScene" uid="uid://km1ruitv2bms" path="res://prefabs/entities/radio_system.tscn" id="10_fafvw"]
 [ext_resource type="PackedScene" uid="uid://68cceeip4fg" path="res://prefabs/entities/dashboard.tscn" id="13_3vq5l"]
 [ext_resource type="PackedScene" uid="uid://1iyv7anqt2wt" path="res://prefabs/entities/steering.tscn" id="13_vw33e"]
 [ext_resource type="PackedScene" uid="uid://co43s7bp8fpc0" path="res://prefabs/env/road.tscn" id="16_udowj"]
@@ -294,12 +293,18 @@ texture_focused = ExtResource("6_eocjf")
 
 [node name="Menu" type="CanvasLayer" parent="car/player/camera"]
 
-[node name="Start Screen" parent="car/player/camera/Menu" node_paths=PackedStringArray("Ui") instance=ExtResource("4_ho165")]
+[node name="Start Screen" parent="car/player/camera/Menu" node_paths=PackedStringArray("Ui", "Deathiary") instance=ExtResource("4_ho165")]
 Ui = NodePath("../../ui")
+Deathiary = NodePath("../../Deathiary/Deathiary display")
 
 [node name="Game Over" type="CanvasLayer" parent="car/player/camera"]
 
 [node name="Game Over" parent="car/player/camera/Game Over" instance=ExtResource("8_us8ht")]
+visible = false
+
+[node name="Deathiary" type="CanvasLayer" parent="car/player/camera"]
+
+[node name="Deathiary display" parent="car/player/camera/Deathiary" instance=ExtResource("9_s5bmr")]
 visible = false
 
 [node name="camera animation" type="AnimationPlayer" parent="car/player"]
@@ -310,28 +315,7 @@ libraries = {
 
 [node name="pedals" parent="car" instance=ExtResource("9_5ktni")]
 
-[node name="radio system" type="Node3D" parent="car" node_paths=PackedStringArray("Simon")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.0784899, 0, 0.0861496)
-script = ExtResource("12_qmdvi")
-Simon = NodePath("simon display")
-
-[node name="simon display" parent="car/radio system" instance=ExtResource("12_8tiff")]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0.00998297, -0.254991, 0.538732)
-
-[node name="radio" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.0999848, 0, -0.00174175, 0, 0.1, 0, 0.00174175, 0, 0.0999848, 0.007, -0.194979, 0.784008)
-
-[node name="red" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.0674521, -0.217545, 0.620212)
-
-[node name="yellow" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0761627, -0.226279, 0.468873)
-
-[node name="green" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0.0775591, -0.224532, 0.611057)
-
-[node name="blue" parent="car/radio system" instance=ExtResource("7_35800")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.072592, -0.222953, 0.477706)
+[node name="radio system" parent="car" instance=ExtResource("10_fafvw")]
 
 [node name="dashboard" parent="car" instance=ExtResource("13_3vq5l")]
 
@@ -347,12 +331,3 @@ transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.072592, -0.222953, 0
 [connection signal="button_down" from="car/player/camera/ui/up button" to="car/player/camera" method="_on_up_button_down"]
 [connection signal="restart" from="car/player/camera/Game Over/Game Over" to="." method="_on_game_over_restart"]
 [connection signal="animation_finished" from="car/player/camera animation" to="car/player/camera" method="_on_animation_animation_finished"]
-[connection signal="clicked" from="car/radio system/radio" to="car/radio system" method="_on_radio_clicked"]
-[connection signal="clicked" from="car/radio system/red" to="." method="_on_red_clicked"]
-[connection signal="clicked" from="car/radio system/red" to="car/radio system" method="_on_red_clicked"]
-[connection signal="clicked" from="car/radio system/yellow" to="." method="_on_yellow_clicked"]
-[connection signal="clicked" from="car/radio system/yellow" to="car/radio system" method="_on_yellow_clicked"]
-[connection signal="clicked" from="car/radio system/green" to="." method="_on_green_clicked"]
-[connection signal="clicked" from="car/radio system/green" to="car/radio system" method="_on_green_clicked"]
-[connection signal="clicked" from="car/radio system/blue" to="." method="_on_blue_clicked"]
-[connection signal="clicked" from="car/radio system/blue" to="car/radio system" method="_on_blue_clicked"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6ed4w5s5ot5c"]
+[gd_scene load_steps=5 format=3 uid="uid://b6ed4w5s5ot5c"]
 
 [ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="1_aw4xi"]
 [ext_resource type="Theme" uid="uid://cqr0axdb4bodp" path="res://assets/themes/base.tres" id="1_nqq7b"]
+[ext_resource type="Texture2D" uid="uid://bbr6p4k0yftxo" path="res://assets/images/menu/start.png" id="2_3kiew"]
 [ext_resource type="Script" path="res://scripts/menu/start_buttons.gd" id="2_kafhd"]
 
 [node name="Start Screen" type="Control"]
@@ -22,38 +23,84 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_left = 400
+theme_override_constants/margin_top = 120
+theme_override_constants/margin_right = 400
+theme_override_constants/margin_bottom = 120
 
-[node name="VSplitContainer" type="VSplitContainer" parent="Start Screen"]
+[node name="NinePatchRect" type="NinePatchRect" parent="Start Screen"]
 layout_mode = 2
-split_offset = 265
+texture = ExtResource("2_3kiew")
+patch_margin_left = 100
+patch_margin_top = 100
+patch_margin_right = 100
+patch_margin_bottom = 100
 
-[node name="Label" type="Label" parent="Start Screen/VSplitContainer"]
+[node name="Title" type="VBoxContainer" parent="Start Screen/NinePatchRect"]
+layout_mode = 2
+offset_right = 800.0
+offset_bottom = 580.0
+
+[node name="Label" type="Label" parent="Start Screen/NinePatchRect/Title"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_nqq7b")
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "Car Wreck"
+theme_override_colors/font_color = Color(0.901961, 0.376471, 0.396078, 1)
+theme_override_font_sizes/font_size = 80
+text = "5 days
+"
 horizontal_alignment = 1
 
-[node name="Buttons" type="VBoxContainer" parent="Start Screen/VSplitContainer"]
+[node name="Label2" type="Label" parent="Start Screen/NinePatchRect/Title"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_nqq7b")
+theme_override_colors/font_color = Color(0.901961, 0.376471, 0.396078, 1)
+theme_override_font_sizes/font_size = 50
+text = "with
+"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Start Screen/NinePatchRect/Title"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_nqq7b")
+theme_override_colors/font_color = Color(0.901961, 0.376471, 0.396078, 1)
+theme_override_font_sizes/font_size = 100
+text = "BOBBY
+"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Start Screen/NinePatchRect/Title"]
+layout_mode = 2
+size_flags_vertical = 8
+theme = ExtResource("1_nqq7b")
+theme_override_colors/font_color = Color(0.901961, 0.376471, 0.396078, 1)
+theme_override_font_sizes/font_size = 35
+text = "
+"
+horizontal_alignment = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Start Screen/NinePatchRect/Title"]
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 100
 alignment = 1
 
-[node name="Start" parent="Start Screen/VSplitContainer/Buttons" groups=["start"] instance=ExtResource("1_aw4xi")]
+[node name="Start" parent="Start Screen/NinePatchRect/Title/Buttons" groups=["start"] instance=ExtResource("1_aw4xi")]
 layout_mode = 2
 button_title = "Start"
 
-[node name="Quit" parent="Start Screen/VSplitContainer/Buttons" instance=ExtResource("1_aw4xi")]
+[node name="Deathiary" parent="Start Screen/NinePatchRect/Title/Buttons" instance=ExtResource("1_aw4xi")]
+layout_mode = 2
+button_title = "Collections"
+custom_size = 220.0
+
+[node name="Quit" parent="Start Screen/NinePatchRect/Title/Buttons" instance=ExtResource("1_aw4xi")]
 layout_mode = 2
 button_title = "Quit"
-custom_size = 200.0
+custom_size = 180.0
 
-[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Start" to="." method="_on_start_activate"]
-[connection signal="activate" from="Start Screen/VSplitContainer/Buttons/Quit" to="." method="_on_quit_activate"]
+[connection signal="activate" from="Start Screen/NinePatchRect/Title/Buttons/Start" to="." method="_on_start_activate"]
+[connection signal="activate" from="Start Screen/NinePatchRect/Title/Buttons/Deathiary" to="." method="_on_deathiary_activate"]
+[connection signal="activate" from="Start Screen/NinePatchRect/Title/Buttons/Quit" to="." method="_on_quit_activate"]

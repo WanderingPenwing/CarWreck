@@ -7,7 +7,7 @@ const ROAM : Array = [
 	{"position" : Vector3(1.159,0.147,-0.964), "rotation" : Vector3(35,22.9,6.1)},
 	{"position" : Vector3(0.055,-0.755,0.556), "rotation" : Vector3(13.1,-155.6,-5.9)}
 ]
-const MISBEHAVE : float = 0.002
+const MISBEHAVE : float = 0.004
 const BEHAVE_TIME : float = 5
 
 @export var Belt : Node
