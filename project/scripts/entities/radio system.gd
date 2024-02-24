@@ -10,6 +10,7 @@ const hard = 2
 const MUSICS = [[0, preload('res://assets/sounds/Lullaby.mp3')],
 				[1, preload('res://assets/sounds/Pop.mp3')],
 				[2, preload('res://assets/sounds/Rock.mp3')]]
+
 const SOUNDS = {
 	"red" : preload("res://assets/sounds/sfx/entities/simon/red.mp3"),
 	"blue" : preload("res://assets/sounds/sfx/entities/simon/blue.mp3"),
@@ -26,8 +27,14 @@ var sequence : Array = []
 var index_simon : int = 0
 var simon_onplay : bool = false
 
+# Relatives to effects of the radio
 var sleep : float = 0
 var epilepsi : float = 0
+
+const sleepiness : float = 0.1
+const epilepsiness : float = 0.1
+const EFFECT_DELAY : int = 2
+
 var current_music : int 
 
 
@@ -38,6 +45,7 @@ func change_current_music()-> void:
 	SoundsManager.clear_music()
 	current_music = randi_range(0,len(MUSICS)-1)
 	SoundsManager.play_sound(MUSICS[current_music][1],SoundsManager, 'Music', 0.1, false, true)
+	effect_radio()
 	
 	
 func _on_red_clicked() -> void:
@@ -81,14 +89,19 @@ func _on_blue_clicked() -> void:
 
 
 func effect_radio ()->void:
-	if MUSICS[current_music] == "lullaby":
-		pass
-		## Mettre le fondu ici.
+	if MUSICS[current_music][0] == soft:
+		sleep += sleepiness
 		
-	elif MUSICS[current_music] == "metal":
-		pass
-		## Mettre l'epilepsi
-
+	elif MUSICS[current_music][0] == hard:
+		epilepsi += epilepsiness
+	
+	if sleep > 1:
+		Game.die("You fall asleep.\nGod is driving you to heaven.", 5)
+	if epilepsi > 1:
+		Game.die("You did an epilepsy crisis, slow donw on coffee, dude !", 6)
+	
+	var timer : SceneTreeTimer = get_tree().create_timer(EFFECT_DELAY)
+	timer.timeout.connect(effect_radio)
 
 func _on_radio_clicked() -> void :
 	sequence = []
@@ -130,6 +143,9 @@ func check_4_simon() -> bool:
 	
 	Simon.display("on")
 	change_current_music()
+	# Reset everithing to normal
 	input_radio = []
 	sequence = []
+	sleep = 0
+	epilepsi = 0
 	return true
