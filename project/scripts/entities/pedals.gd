@@ -8,6 +8,7 @@ extends Node3D
 
 @onready var SpeedLabel : Node = get_tree().get_first_node_in_group("speed_label")
 @onready var Game : Node = get_tree().get_first_node_in_group("game")
+@onready var Debug : Node = get_tree().get_first_node_in_group("debug")
 
 
 func _process(_delta: float) -> void:
@@ -20,6 +21,9 @@ func _process(_delta: float) -> void:
 		Game.car_velocity -= acceleration
 	elif Game.car_target_velocity - acceleration > Game.car_velocity :
 		Game.car_velocity += acceleration
+	
+	Debug.print_left("Car velocity " + str(round(Game.car_velocity)) + " km/h", 2)
+	Debug.print_left("Car target velocity " + str(round(Game.car_target_velocity)) + " km/h", 3)
 	
 	check_4_kill()
 

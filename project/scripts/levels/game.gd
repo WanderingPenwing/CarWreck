@@ -8,6 +8,7 @@ var car_target_velocity : int = 40
 @onready var Debug : Node = get_tree().get_first_node_in_group("debug")
 @onready var Score : Node = get_tree().get_first_node_in_group("score")
 @onready var GameOver : Node = get_tree().get_first_node_in_group("game_over")
+@onready var Radio : Node = get_tree().get_first_node_in_group("radio")
 
 
 func _process(delta : float) -> void :
@@ -33,8 +34,6 @@ func _on_game_over_restart() -> void :
 
 
 func debug(delta : float) -> void :
+	Debug.print_left("FPS : " + str(round(1/delta)), 0)
 	Debug.print_left("Press F3 to close the debug menu", 1)
-	Debug.print_left("Car velocity " + str(round(car_velocity)) + " km/h", 2)
-	Debug.print_left("Car target velocity " + str(round(car_target_velocity)) + " km/h", 3)
-	Debug.print_right("FPS : " + str(round(1/delta)), 0)
 	Debug.update_text()

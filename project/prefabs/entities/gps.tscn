@@ -3,9 +3,12 @@
 [ext_resource type="Script" path="res://scripts/entities/GPS.gd" id="1_ff0wm"]
 [ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="2_ksq22"]
 
-[node name="GPS" type="Node3D"]
+[node name="GPS" type="Node3D" node_paths=PackedStringArray("GpsTimer")]
 script = ExtResource("1_ff0wm")
+GpsTimer = NodePath("Timer")
 
 [node name="GPS_Button" parent="." instance=ExtResource("2_ksq22")]
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="clicked" from="GPS_Button" to="." method="_on_gps_button_clicked"]

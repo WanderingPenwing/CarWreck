@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cs1tc2jj7ctle" path="res://prefabs/entities/simon.tscn" id="2_o5lr3"]
 [ext_resource type="PackedScene" uid="uid://d3euo8tp4chxy" path="res://prefabs/entities/3d_button.tscn" id="3_82t1x"]
 
-[node name="radio system" type="Node3D" node_paths=PackedStringArray("Simon")]
+[node name="radio system" type="Node3D" node_paths=PackedStringArray("Simon") groups=["radio"]]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.0784899, 0, 0.0861496)
 script = ExtResource("1_88mmj")
 Simon = NodePath("simon display")
