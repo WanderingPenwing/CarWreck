@@ -1,14 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhqr8hlgnvh4a"]
+[gd_scene load_steps=5 format=3 uid="uid://bjpbiwul30obi"]
 
-[ext_resource type="Theme" uid="uid://cqr0axdb4bodp" path="res://assets/themes/base.tres" id="1_fba84"]
-[ext_resource type="Script" path="res://scripts/menu/death.gd" id="2_i0fl8"]
-[ext_resource type="Texture2D" uid="uid://bbr6p4k0yftxo" path="res://assets/images/menu/start.png" id="2_yw85g"]
-[ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="3_jedtk"]
+[ext_resource type="Script" path="res://scripts/menu/settings.gd" id="1_26ltb"]
+[ext_resource type="Texture2D" uid="uid://bbr6p4k0yftxo" path="res://assets/images/menu/start.png" id="2_rl7i0"]
+[ext_resource type="Theme" uid="uid://cqr0axdb4bodp" path="res://assets/themes/base.tres" id="3_kicll"]
+[ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="4_skm3f"]
 
-[node name="Deathiary" type="CanvasLayer" node_paths=PackedStringArray("Back", "DeathiaryList")]
-script = ExtResource("2_i0fl8")
+[node name="Credits" type="CanvasLayer" node_paths=PackedStringArray("Back")]
+script = ExtResource("1_26ltb")
 Back = NodePath("control/margins/bg/margin/back")
-DeathiaryList = NodePath("control/margins/bg/margin/list")
 
 [node name="control" type="Control" parent="."]
 process_mode = 3
@@ -33,7 +32,7 @@ theme_override_constants/margin_bottom = 60
 
 [node name="bg" type="NinePatchRect" parent="control/margins"]
 layout_mode = 2
-texture = ExtResource("2_yw85g")
+texture = ExtResource("2_rl7i0")
 patch_margin_left = 100
 patch_margin_top = 100
 patch_margin_right = 100
@@ -53,23 +52,30 @@ theme_override_constants/margin_bottom = 70
 
 [node name="list" type="VBoxContainer" parent="control/margins/bg/margin"]
 layout_mode = 2
+theme_override_constants/separation = 100
 
 [node name="title" type="Label" parent="control/margins/bg/margin/list"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
-theme = ExtResource("1_fba84")
+theme = ExtResource("3_kicll")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
-text = "Death Collection"
+text = "Credits"
 
-[node name="space" type="Label" parent="control/margins/bg/margin/list"]
+[node name="RichTextLabel" type="RichTextLabel" parent="control/margins/bg/margin/list"]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 1
-theme = ExtResource("1_fba84")
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 21
+text = "Game made for the PIZZA JAM using Godot
 
-[node name="back" parent="control/margins/bg/margin" groups=["back"] instance=ExtResource("3_jedtk")]
+Code : Eliott Jvn and WanderingPenwing
+2D Assets : Eliott Jvn
+3D Assets : Wandering Penwing
+Music : Beers to Bear"
+
+[node name="back" parent="control/margins/bg/margin" groups=["back"] instance=ExtResource("4_skm3f")]
 layout_mode = 2
 size_flags_vertical = 8
 button_title = "Back to game"

@@ -12,10 +12,10 @@ script = ExtResource("1_7kn7v")
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme = ExtResource("2_hgum5")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 
 [node name="Decrease" parent="." instance=ExtResource("3_a6aok")]
 layout_mode = 2
-size_flags_vertical = 4
 button_title = "-"
 custom_size = 0.0
 
@@ -23,12 +23,12 @@ custom_size = 0.0
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
 theme = ExtResource("2_hgum5")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "50"
 horizontal_alignment = 1
 
 [node name="Increase" parent="." instance=ExtResource("3_a6aok")]
 layout_mode = 2
-size_flags_vertical = 4
 button_title = "+"
 custom_size = 0.0
 

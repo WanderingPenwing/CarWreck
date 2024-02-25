@@ -22,6 +22,7 @@ var time_since_selected : float = 0.0 # To avoid intant activations
 var Buttons : Array[Node] = []
 var button_was_activated : bool = false # to activate only once for long inputs
 
+var initialized : bool = false
 
 
 func _ready() -> void :
@@ -33,31 +34,54 @@ func _ready() -> void :
 	self.add_to_group("button")
 
 
-
 func initialize() -> void :
-	Buttons = get_tree().get_nodes_in_group("button")
+	Buttons = []
+	var all_buttons = get_tree().get_nodes_in_group("button")
+	
+	for button in all_buttons :
+		if not button.visible :
+			continue
+		Buttons.append(button)
+	
+	var text : String = "Buttons : ["
+	for button in Buttons :
+		text += button.name + ", "
+	#print(text)
+
+
+func update_next() -> void :
+	initialize()
 	
 	if not next : # If not overidden, get next in tree
 		var i : int = 0
-		while i < len(Buttons) and Buttons[i] != self :
+		while i < len(Buttons) and Buttons[i] != self and not Buttons[i].visible:
 			i += 1
-		var next_button : int = (i + 1) % len(Buttons)
-		next = Buttons[next_button]
+		if i == len(Buttons) :
+			next = self
+		else :
+			var next_button : int = (i + 1) % len(Buttons)
+			next = Buttons[next_button]
+
+
+func update_previous() -> void :
+	initialize()
 	
 	if not previous : # If not overidden, previous in tree
 		var i : int = 0
-		while i < len(Buttons) and Buttons[i] != self :
+		while i < len(Buttons) and Buttons[i] != self and not Buttons[i].visible:
 			i += 1
-		var previous_button : int = (i - 1) % len(Buttons)
-		previous = Buttons[previous_button]
-
+		if i == len(Buttons) :
+			previous = self
+		else :
+			var previous_button : int = (i - 1) % len(Buttons)
+			previous = Buttons[previous_button]
 
 
 func _process(delta : float) -> void :
-	if not Buttons :
+	if not initialized :
 		initialize()
-		
-	# Could be in _ready(), but useful here to be able to change it dynamically
+		initialized = true
+	
 	$Button.custom_minimum_size.x = custom_size
 	$Button.text = "  " + button_title + "  "
 
@@ -85,10 +109,12 @@ func _process(delta : float) -> void :
 	button_was_activated = false
 	
 	if Input.is_action_just_pressed("menu_next") :
+		update_next()
 		become_unselected()
 		next.become_selected()
 	
 	if Input.is_action_just_pressed("menu_previous") :
+		update_previous()
 		become_unselected()
 		previous.become_selected()
 

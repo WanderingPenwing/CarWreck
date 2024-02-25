@@ -1,0 +1,96 @@
+[gd_scene load_steps=6 format=3 uid="uid://bshiiyhmateoq"]
+
+[ext_resource type="Script" path="res://scripts/menu/settings.gd" id="1_iv70f"]
+[ext_resource type="Texture2D" uid="uid://bbr6p4k0yftxo" path="res://assets/images/menu/start.png" id="2_10o18"]
+[ext_resource type="Theme" uid="uid://cqr0axdb4bodp" path="res://assets/themes/base.tres" id="3_jpuai"]
+[ext_resource type="PackedScene" uid="uid://cchvtdd4kf3vh" path="res://prefabs/menu/volume_selector.tscn" id="5_kry22"]
+[ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="6_jcdmg"]
+
+[node name="Settings" type="CanvasLayer" node_paths=PackedStringArray("Back")]
+script = ExtResource("1_iv70f")
+Back = NodePath("control/margins/bg/margin/back")
+
+[node name="control" type="Control" parent="."]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="margins" type="MarginContainer" parent="control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 60
+
+[node name="bg" type="NinePatchRect" parent="control/margins"]
+layout_mode = 2
+texture = ExtResource("2_10o18")
+patch_margin_left = 100
+patch_margin_top = 100
+patch_margin_right = 100
+patch_margin_bottom = 100
+
+[node name="margin" type="MarginContainer" parent="control/margins/bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 70
+
+[node name="list" type="VBoxContainer" parent="control/margins/bg/margin"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="title" type="Label" parent="control/margins/bg/margin/list"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme = ExtResource("3_jpuai")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Sound Settings
+"
+
+[node name="Layout" type="VBoxContainer" parent="control/margins/bg/margin/list"]
+layout_mode = 2
+theme_override_constants/separation = 200
+
+[node name="Bus selection" type="VBoxContainer" parent="control/margins/bg/margin/list/Layout"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Master" parent="control/margins/bg/margin/list/Layout/Bus selection" instance=ExtResource("5_kry22")]
+layout_mode = 2
+title = "Master"
+bus = "master"
+
+[node name="Sfx" parent="control/margins/bg/margin/list/Layout/Bus selection" instance=ExtResource("5_kry22")]
+layout_mode = 2
+title = "Sounds"
+bus = "sfx"
+
+[node name="Music" parent="control/margins/bg/margin/list/Layout/Bus selection" instance=ExtResource("5_kry22")]
+layout_mode = 2
+title = "Music"
+bus = "music"
+
+[node name="back" parent="control/margins/bg/margin" groups=["back"] instance=ExtResource("6_jcdmg")]
+layout_mode = 2
+size_flags_vertical = 8
+button_title = "Back to game"
+
+[connection signal="activate" from="control/margins/bg/margin/back" to="." method="_on_back_activate"]

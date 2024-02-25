@@ -7,6 +7,7 @@ const death_label = preload("res://prefabs/menu/death_type.tscn")
 
 var save : Array
 
+@onready var StartScreen : Node = get_tree().get_first_node_in_group("start_screen")
 
 func _ready() -> void :
 	var generate : int = len(GameState.DEATHIARY)
@@ -20,10 +21,10 @@ func _ready() -> void :
 
 
 func display() -> void :
-	print("mmmmmm")
 	self.show()
 	Back.become_selected()
 
 
 func _on_back_activate(_name : String) -> void :
 	self.hide()
+	StartScreen.show()

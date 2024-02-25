@@ -6,6 +6,8 @@ const ENGINE_SOUND : Resource = preload("res://assets/sounds/sfx/car/engine.mp3"
 
 @export var Ui : Node
 @export var Deathiary : Node
+@export var Settings : Node
+@export var Credits : Node
 
 
 func _ready() -> void :
@@ -27,6 +29,17 @@ func _on_quit_activate(_name : String) -> void :
 
 func _on_deathiary_activate(_name: String) -> void:
 	Deathiary.display()
+	self.hide()
+
+
+func _on_credits_activate(_name: String) -> void:
+	Credits.display()
+	self.hide()
+
+
+func _on_settings_activate(_name: String) -> void:
+	Settings.display()
+	self.hide()
 
 
 func start_engine() -> void :

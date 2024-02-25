@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bthaq5qtoww4j"]
+[gd_scene load_steps=27 format=3 uid="uid://bthaq5qtoww4j"]
 
 [ext_resource type="Script" path="res://scripts/levels/game.gd" id="1_i31kb"]
 [ext_resource type="PackedScene" uid="uid://4eq13hvxl7or" path="res://prefabs/ui/debug_ui.tscn" id="1_qc15p"]
@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://dg6inuw78j5up" path="res://prefabs/entities/pedals.tscn" id="9_5ktni"]
 [ext_resource type="PackedScene" uid="uid://bhqr8hlgnvh4a" path="res://prefabs/menu/deathiary.tscn" id="9_s5bmr"]
 [ext_resource type="PackedScene" uid="uid://km1ruitv2bms" path="res://prefabs/entities/radio_system.tscn" id="10_fafvw"]
+[ext_resource type="PackedScene" uid="uid://bshiiyhmateoq" path="res://prefabs/menu/settings.tscn" id="10_x8tjd"]
+[ext_resource type="PackedScene" uid="uid://bjpbiwul30obi" path="res://prefabs/menu/credits.tscn" id="11_biw23"]
 [ext_resource type="PackedScene" uid="uid://68cceeip4fg" path="res://prefabs/entities/dashboard.tscn" id="13_3vq5l"]
 [ext_resource type="PackedScene" uid="uid://1iyv7anqt2wt" path="res://prefabs/entities/steering.tscn" id="13_vw33e"]
 [ext_resource type="PackedScene" uid="uid://c8e7k2e53snc4" path="res://prefabs/entities/gps.tscn" id="15_d8mj3"]
@@ -313,14 +315,22 @@ color = Color(0, 0, 0, 0)
 
 [node name="Debug Ui" parent="car/player/camera" instance=ExtResource("1_qc15p")]
 
-[node name="Start Screen" parent="car/player/camera" node_paths=PackedStringArray("Ui", "Deathiary") instance=ExtResource("4_ho165")]
+[node name="Start Screen" parent="car/player/camera" node_paths=PackedStringArray("Ui", "Deathiary", "Settings", "Credits") instance=ExtResource("4_ho165")]
 Ui = NodePath("../ui")
-Deathiary = NodePath("../Deathiary display")
+Deathiary = NodePath("../Deathiary")
+Settings = NodePath("../Settings")
+Credits = NodePath("../Credits")
 
 [node name="Game Over" parent="car/player/camera" instance=ExtResource("8_us8ht")]
 visible = false
 
-[node name="Deathiary display" parent="car/player/camera" instance=ExtResource("9_s5bmr")]
+[node name="Deathiary" parent="car/player/camera" instance=ExtResource("9_s5bmr")]
+visible = false
+
+[node name="Settings" parent="car/player/camera" instance=ExtResource("10_x8tjd")]
+visible = false
+
+[node name="Credits" parent="car/player/camera" instance=ExtResource("11_biw23")]
 visible = false
 
 [node name="camera animation" type="AnimationPlayer" parent="car/player"]

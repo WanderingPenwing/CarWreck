@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bbr6p4k0yftxo" path="res://assets/images/menu/start.png" id="2_3kiew"]
 [ext_resource type="Script" path="res://scripts/menu/start_buttons.gd" id="2_kafhd"]
 
-[node name="Start Screen" type="CanvasLayer"]
+[node name="Start Screen" type="CanvasLayer" groups=["start_screen"]]
 script = ExtResource("2_kafhd")
 
 [node name="control" type="Control" parent="."]
@@ -114,5 +114,7 @@ button_title = "Quit"
 custom_size = 150.0
 
 [connection signal="activate" from="control/margin/bg/title/Buttons/Start" to="." method="_on_start_activate"]
+[connection signal="activate" from="control/margin/bg/title/Buttons/Settings" to="." method="_on_settings_activate"]
 [connection signal="activate" from="control/margin/bg/title/Buttons/Deathiary" to="." method="_on_deathiary_activate"]
+[connection signal="activate" from="control/margin/bg/title/Buttons/Credits" to="." method="_on_credits_activate"]
 [connection signal="activate" from="control/margin/bg/title/Buttons/Quit" to="." method="_on_quit_activate"]
