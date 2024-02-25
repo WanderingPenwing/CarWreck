@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d3gsukdm5fyy8"
+path="res://.godot/imported/Twinkle, Twinkle, Little Star - Bossa.mp3-cc7bfee2e364fb2bd9df2aad61f8df98.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/twinkle/Twinkle, Twinkle, Little Star - Bossa.mp3"
+dest_files=["res://.godot/imported/Twinkle, Twinkle, Little Star - Bossa.mp3-cc7bfee2e364fb2bd9df2aad61f8df98.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dsoykrap5gxsr"
+path="res://.godot/imported/Twinkle Twinkle Little Star - Berceuse.mp3-931d34099e419e103e259215dbe6ada1.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/twinkle/Twinkle Twinkle Little Star - Berceuse.mp3"
+dest_files=["res://.godot/imported/Twinkle Twinkle Little Star - Berceuse.mp3-931d34099e419e103e259215dbe6ada1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

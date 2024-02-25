@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://crup3qn2ktq5d"
+path="res://.godot/imported/Twinkle Twinkle little star - Epic.mp3-90b1bd3555a869a768e4e6dea49eb28c.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/twinkle/Twinkle Twinkle little star - Epic.mp3"
+dest_files=["res://.godot/imported/Twinkle Twinkle little star - Epic.mp3-90b1bd3555a869a768e4e6dea49eb28c.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -5,9 +5,16 @@ extends Node3D
 const SOFT = 0
 const POP = 1
 const HARD = 2
-const MUSICS = [[0, preload('res://assets/sounds/Lullaby.mp3')],
-				[1, preload('res://assets/sounds/Pop.mp3')],
-				[2, preload('res://assets/sounds/Rock.mp3')]]
+#const MUSICS = [[0, preload('res://assets/sounds/Lullaby.mp3')],
+				#[1, preload('res://assets/sounds/Pop.mp3')],
+				#[2, preload('res://assets/sounds/Rock.mp3')]]
+const MUSICS = [[0, preload('res://assets/sounds/twinkle/Twinkle Twinkle Little Star - Berceuse.mp3')],
+				[1, preload('res://assets/sounds/twinkle/Twinkle twinkle little star - depression.mp3')],
+				[1, preload('res://assets/sounds/twinkle/Twinkle Twinkle little star - Epic.mp3')],
+				[1, preload('res://assets/sounds/twinkle/Twinkle Twinkle Little Star - Jazz.mp3')],
+				[1, preload('res://assets/sounds/twinkle/Twinkle, Twinkle, Little Star - Bossa.mp3')],
+				[2, preload('res://assets/sounds/twinkle/Twinkle, Twinkle, Little Star - Metal.mp3')]
+]
 const SOUNDS = {
 	"red" : preload("res://assets/sounds/sfx/entities/simon/red.mp3"),
 	"blue" : preload("res://assets/sounds/sfx/entities/simon/blue.mp3"),
@@ -20,7 +27,7 @@ const COLOR : Array = ['green', 'red', 'yellow', 'blue']
 const SLEEP_SPEED : float = 0.03
 const EPILEPSY_SPEED : float = 0.03
 const IMMUNE_TIME : float = 10
-const CHANGE_RADIO_PROBA : float = 0.0006
+const CHANGE_RADIO_PROBA : float = 0.001
 
 var input_radio : Array
 var sequence : Array = []
@@ -51,6 +58,8 @@ func _process(delta: float) -> void:
 	Excited.color.a = epilepsy * 0.8
 	Sleepy.color.a = sleep * 0.8
 	
+	if MUSICS[current_music][0] != POP :
+		return
 	if simon_onplay :
 		return
 	if immune > 0 :
