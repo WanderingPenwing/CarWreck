@@ -1,7 +1,7 @@
 extends Node3D
 
 const LIMIT : float = 320;
-const GOAT_SPAWN : float = 0.4;
+const GOAT_SPAWN : float = 0.1;
 const IMMUNITY : float = 30
 
 var immune : float = GameState.GOAT_ACTIVATION

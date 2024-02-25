@@ -3,7 +3,13 @@
 [ext_resource type="Script" path="res://scripts/ui/game_over.gd" id="1_skh8f"]
 [ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="2_01u5k"]
 
-[node name="Game Over" type="Control" node_paths=PackedStringArray("Message", "Score", "Restart") groups=["game_over"]]
+[node name="Game Over" type="CanvasLayer" node_paths=PackedStringArray("Message", "Score", "Restart") groups=["game_over"]]
+script = ExtResource("1_skh8f")
+Message = NodePath("control/background/margins/vbox/message")
+Score = NodePath("control/background/margins/vbox/score")
+Restart = NodePath("control/background/margins/vbox/Restart")
+
+[node name="control" type="Control" parent="."]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -11,12 +17,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_skh8f")
-Message = NodePath("background/margins/vbox/message")
-Score = NodePath("background/margins/vbox/score")
-Restart = NodePath("background/margins/vbox/Restart")
 
-[node name="background" type="ColorRect" parent="."]
+[node name="background" type="ColorRect" parent="control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,7 +27,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 0.733333)
 
-[node name="margins" type="MarginContainer" parent="background"]
+[node name="margins" type="MarginContainer" parent="control/background"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -37,10 +39,10 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="vbox" type="VBoxContainer" parent="background/margins"]
+[node name="vbox" type="VBoxContainer" parent="control/background/margins"]
 layout_mode = 2
 
-[node name="title" type="Label" parent="background/margins/vbox"]
+[node name="title" type="Label" parent="control/background/margins/vbox"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 size_flags_vertical = 0
@@ -48,7 +50,7 @@ theme_override_font_sizes/font_size = 50
 text = "Game Over"
 horizontal_alignment = 1
 
-[node name="message" type="Label" parent="background/margins/vbox"]
+[node name="message" type="Label" parent="control/background/margins/vbox"]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
@@ -56,21 +58,21 @@ text = "You suck"
 horizontal_alignment = 1
 clip_text = true
 
-[node name="score title" type="Label" parent="background/margins/vbox"]
+[node name="score title" type="Label" parent="control/background/margins/vbox"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Your final score : "
 horizontal_alignment = 1
 
-[node name="score" type="Label" parent="background/margins/vbox"]
+[node name="score" type="Label" parent="control/background/margins/vbox"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "0000000"
 horizontal_alignment = 1
 
-[node name="Restart" parent="background/margins/vbox" instance=ExtResource("2_01u5k")]
+[node name="Restart" parent="control/background/margins/vbox" instance=ExtResource("2_01u5k")]
 layout_mode = 2
 button_title = "Restart"
 
-[connection signal="activate" from="background/margins/vbox/Restart" to="." method="_on_restart_activate"]
+[connection signal="activate" from="control/background/margins/vbox/Restart" to="." method="_on_restart_activate"]

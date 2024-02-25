@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 @export var Back : Node
 @export var DeathiaryList : Node
@@ -20,6 +20,7 @@ func _ready() -> void :
 
 
 func display() -> void :
+	print("mmmmmm")
 	self.show()
 	Back.become_selected()
 

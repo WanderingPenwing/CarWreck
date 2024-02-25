@@ -313,20 +313,14 @@ color = Color(0, 0, 0, 0)
 
 [node name="Debug Ui" parent="car/player/camera" instance=ExtResource("1_qc15p")]
 
-[node name="Menu" type="CanvasLayer" parent="car/player/camera"]
+[node name="Start Screen" parent="car/player/camera" node_paths=PackedStringArray("Ui", "Deathiary") instance=ExtResource("4_ho165")]
+Ui = NodePath("../ui")
+Deathiary = NodePath("../Deathiary display")
 
-[node name="Start Screen" parent="car/player/camera/Menu" node_paths=PackedStringArray("Ui", "Deathiary") instance=ExtResource("4_ho165")]
-Ui = NodePath("../../ui")
-Deathiary = NodePath("../../Deathiary/Deathiary display")
-
-[node name="Game Over" type="CanvasLayer" parent="car/player/camera"]
-
-[node name="Game Over" parent="car/player/camera/Game Over" instance=ExtResource("8_us8ht")]
+[node name="Game Over" parent="car/player/camera" instance=ExtResource("8_us8ht")]
 visible = false
 
-[node name="Deathiary" type="CanvasLayer" parent="car/player/camera"]
-
-[node name="Deathiary display" parent="car/player/camera/Deathiary" instance=ExtResource("9_s5bmr")]
+[node name="Deathiary display" parent="car/player/camera" instance=ExtResource("9_s5bmr")]
 visible = false
 
 [node name="camera animation" type="AnimationPlayer" parent="car/player"]
@@ -360,5 +354,5 @@ shape = SubResource("BoxShape3D_3qt1t")
 [connection signal="button_down" from="car/player/camera/ui/left button" to="car/player/camera" method="_on_left_button_down"]
 [connection signal="button_down" from="car/player/camera/ui/down button" to="car/player/camera" method="_on_down_button_down"]
 [connection signal="button_down" from="car/player/camera/ui/up button" to="car/player/camera" method="_on_up_button_down"]
-[connection signal="restart" from="car/player/camera/Game Over/Game Over" to="." method="_on_game_over_restart"]
+[connection signal="restart" from="car/player/camera/Game Over" to="." method="_on_game_over_restart"]
 [connection signal="animation_finished" from="car/player/camera animation" to="car/player/camera" method="_on_animation_animation_finished"]

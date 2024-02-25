@@ -1,10 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhqr8hlgnvh4a"]
+[gd_scene load_steps=5 format=3 uid="uid://bhqr8hlgnvh4a"]
 
 [ext_resource type="Theme" uid="uid://cqr0axdb4bodp" path="res://assets/themes/base.tres" id="1_fba84"]
 [ext_resource type="Script" path="res://scripts/menu/death.gd" id="2_i0fl8"]
+[ext_resource type="Texture2D" uid="uid://bbr6p4k0yftxo" path="res://assets/images/menu/start.png" id="2_yw85g"]
 [ext_resource type="PackedScene" uid="uid://i0xese720ivl" path="res://prefabs/menu/base_button.tscn" id="3_jedtk"]
 
-[node name="Deathiary" type="Control" node_paths=PackedStringArray("Back", "DeathiaryList")]
+[node name="Deathiary" type="CanvasLayer" node_paths=PackedStringArray("Back", "DeathiaryList")]
+script = ExtResource("2_i0fl8")
+Back = NodePath("control/margins/bg/margin/back")
+DeathiaryList = NodePath("control/margins/bg/margin/list")
+
+[node name="control" type="Control" parent="."]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -12,49 +18,60 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_i0fl8")
-Back = NodePath("background/margins/back")
-DeathiaryList = NodePath("background/margins/list")
 
-[node name="background" type="ColorRect" parent="."]
+[node name="margins" type="MarginContainer" parent="control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.145098, 0.145098, 0.145098, 1)
-
-[node name="margins" type="MarginContainer" parent="background"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+theme_override_constants/margin_left = 200
 theme_override_constants/margin_top = 100
-theme_override_constants/margin_bottom = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 100
 
-[node name="list" type="VBoxContainer" parent="background/margins"]
+[node name="bg" type="NinePatchRect" parent="control/margins"]
+layout_mode = 2
+texture = ExtResource("2_yw85g")
+patch_margin_left = 100
+patch_margin_top = 100
+patch_margin_right = 100
+patch_margin_bottom = 100
+
+[node name="margin" type="MarginContainer" parent="control/margins/bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 70
+
+[node name="list" type="VBoxContainer" parent="control/margins/bg/margin"]
 layout_mode = 2
 
-[node name="title" type="Label" parent="background/margins/list"]
+[node name="title" type="Label" parent="control/margins/bg/margin/list"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
 theme = ExtResource("1_fba84")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Death Collection"
 
-[node name="space" type="Label" parent="background/margins/list"]
+[node name="space" type="Label" parent="control/margins/bg/margin/list"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 1
 theme = ExtResource("1_fba84")
 
-[node name="back" parent="background/margins" groups=["back"] instance=ExtResource("3_jedtk")]
+[node name="back" parent="control/margins/bg/margin" groups=["back"] instance=ExtResource("3_jedtk")]
 layout_mode = 2
 size_flags_vertical = 8
 button_title = "Back to game"
 
-[connection signal="activate" from="background/margins/back" to="." method="_on_back_activate"]
+[connection signal="activate" from="control/margins/bg/margin/back" to="." method="_on_back_activate"]

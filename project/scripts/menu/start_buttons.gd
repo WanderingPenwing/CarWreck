@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 const START_SOUND : Resource = preload("res://assets/sounds/sfx/car/start.mp3")
 const START_DURATION : float = 2.5

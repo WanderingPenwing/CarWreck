@@ -5,7 +5,10 @@
 [ext_resource type="Texture2D" uid="uid://bbr6p4k0yftxo" path="res://assets/images/menu/start.png" id="2_3kiew"]
 [ext_resource type="Script" path="res://scripts/menu/start_buttons.gd" id="2_kafhd"]
 
-[node name="Start Screen" type="Control"]
+[node name="Start Screen" type="CanvasLayer"]
+script = ExtResource("2_kafhd")
+
+[node name="control" type="Control" parent="."]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -13,9 +16,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_kafhd")
 
-[node name="Start Screen" type="MarginContainer" parent="."]
+[node name="margin" type="MarginContainer" parent="control"]
 layout_direction = 2
 layout_mode = 1
 anchors_preset = 15
@@ -24,11 +26,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 400
-theme_override_constants/margin_top = 120
+theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 400
-theme_override_constants/margin_bottom = 120
+theme_override_constants/margin_bottom = 60
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Start Screen"]
+[node name="bg" type="NinePatchRect" parent="control/margin"]
 layout_mode = 2
 texture = ExtResource("2_3kiew")
 patch_margin_left = 100
@@ -36,12 +38,12 @@ patch_margin_top = 100
 patch_margin_right = 100
 patch_margin_bottom = 100
 
-[node name="Title" type="VBoxContainer" parent="Start Screen/NinePatchRect"]
+[node name="title" type="VBoxContainer" parent="control/margin/bg"]
 layout_mode = 2
 offset_right = 800.0
 offset_bottom = 580.0
 
-[node name="Label" type="Label" parent="Start Screen/NinePatchRect/Title"]
+[node name="title 1" type="Label" parent="control/margin/bg/title"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_nqq7b")
@@ -51,7 +53,7 @@ text = "5 days
 "
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Start Screen/NinePatchRect/Title"]
+[node name="title 2" type="Label" parent="control/margin/bg/title"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_nqq7b")
@@ -61,7 +63,7 @@ text = "with
 "
 horizontal_alignment = 1
 
-[node name="Label3" type="Label" parent="Start Screen/NinePatchRect/Title"]
+[node name="title 3" type="Label" parent="control/margin/bg/title"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_nqq7b")
@@ -71,7 +73,7 @@ text = "BOBBY
 "
 horizontal_alignment = 1
 
-[node name="Label4" type="Label" parent="Start Screen/NinePatchRect/Title"]
+[node name="spacing" type="Label" parent="control/margin/bg/title"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_nqq7b")
@@ -81,26 +83,36 @@ text = "
 "
 horizontal_alignment = 1
 
-[node name="Buttons" type="VBoxContainer" parent="Start Screen/NinePatchRect/Title"]
+[node name="Buttons" type="VBoxContainer" parent="control/margin/bg/title"]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_constants/separation = 100
+theme_override_constants/separation = 80
 alignment = 1
 
-[node name="Start" parent="Start Screen/NinePatchRect/Title/Buttons" groups=["start"] instance=ExtResource("1_aw4xi")]
+[node name="Start" parent="control/margin/bg/title/Buttons" groups=["start"] instance=ExtResource("1_aw4xi")]
 layout_mode = 2
 button_title = "Start"
 
-[node name="Deathiary" parent="Start Screen/NinePatchRect/Title/Buttons" instance=ExtResource("1_aw4xi")]
+[node name="Settings" parent="control/margin/bg/title/Buttons" instance=ExtResource("1_aw4xi")]
+layout_mode = 2
+button_title = "Settings"
+custom_size = 200.0
+
+[node name="Deathiary" parent="control/margin/bg/title/Buttons" instance=ExtResource("1_aw4xi")]
 layout_mode = 2
 button_title = "Collections"
-custom_size = 220.0
+custom_size = 200.0
 
-[node name="Quit" parent="Start Screen/NinePatchRect/Title/Buttons" instance=ExtResource("1_aw4xi")]
+[node name="Credits" parent="control/margin/bg/title/Buttons" instance=ExtResource("1_aw4xi")]
+layout_mode = 2
+button_title = "Credits"
+custom_size = 200.0
+
+[node name="Quit" parent="control/margin/bg/title/Buttons" instance=ExtResource("1_aw4xi")]
 layout_mode = 2
 button_title = "Quit"
-custom_size = 180.0
+custom_size = 150.0
 
-[connection signal="activate" from="Start Screen/NinePatchRect/Title/Buttons/Start" to="." method="_on_start_activate"]
-[connection signal="activate" from="Start Screen/NinePatchRect/Title/Buttons/Deathiary" to="." method="_on_deathiary_activate"]
-[connection signal="activate" from="Start Screen/NinePatchRect/Title/Buttons/Quit" to="." method="_on_quit_activate"]
+[connection signal="activate" from="control/margin/bg/title/Buttons/Start" to="." method="_on_start_activate"]
+[connection signal="activate" from="control/margin/bg/title/Buttons/Deathiary" to="." method="_on_deathiary_activate"]
+[connection signal="activate" from="control/margin/bg/title/Buttons/Quit" to="." method="_on_quit_activate"]

@@ -11,15 +11,15 @@ Wheel = NodePath("steering wheel")
 [node name="steering wheel" parent="." instance=ExtResource("2_8v836")]
 transform = Transform3D(1, 0, 0, 0, 0.988049, -0.154141, 0, 0.154141, 0.988049, 0.437, 0.01, 0.618)
 
+[node name="left" parent="steering wheel" instance=ExtResource("3_4spyt")]
+transform = Transform3D(0.2, 0, 0, 0, 0.19761, 0.0308282, 0, -0.0308282, 0.19761, 0.151418, 0.0428512, -0.0145246)
+
+[node name="right" parent="steering wheel" instance=ExtResource("3_4spyt")]
+transform = Transform3D(0.2, 0, 0, 0, 0.19761, 0.0308282, 0, -0.0308282, 0.19761, -0.182083, 0.0502727, -0.0197328)
+
 [node name="honk" parent="." instance=ExtResource("3_4spyt")]
 transform = Transform3D(0.19997, 0, -0.0034835, 0, 0.2, 0, 0.0034835, 0, 0.19997, 0.426784, 0.0178568, 0.596778)
 
-[node name="left" parent="." instance=ExtResource("3_4spyt")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.588418, 0.0545779, 0.610254)
-
-[node name="right" parent="." instance=ExtResource("3_4spyt")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0.254917, 0.0627135, 0.606252)
-
+[connection signal="clicked" from="steering wheel/left" to="." method="_on_left_clicked"]
+[connection signal="clicked" from="steering wheel/right" to="." method="_on_right_clicked"]
 [connection signal="clicked" from="honk" to="." method="_on_honk_clicked"]
-[connection signal="clicked" from="left" to="." method="_on_left_clicked"]
-[connection signal="clicked" from="right" to="." method="_on_right_clicked"]
