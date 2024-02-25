@@ -8,7 +8,7 @@ const TIME_DELAY : float = 6
 const IMMUNITY : float = 12
 
 var need_press : bool = false
-var immune : float = IMMUNITY
+var immune : float = GameState.GPS_ACTIVATION
 
 @export var GpsTimer : Timer
 @export var Problem : Node

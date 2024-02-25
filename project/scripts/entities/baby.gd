@@ -14,7 +14,7 @@ const BEHAVE_TIME : float = 5
 @export var Baby : Node
 
 var state : String = "buckled"
-var behaving : float = BEHAVE_TIME
+var behaving : float = GameState.BABY_ACTIVATION
 
 @onready var Game : Node = get_tree().get_first_node_in_group("game")
 

@@ -37,7 +37,7 @@ var simon_onplay : bool = false
 var sleep : float = 0
 var epilepsy : float = 0
 var current_music : int 
-var immune : float = IMMUNE_TIME
+var immune : float = GameState.RADIO_ACTIVATION
 
 @onready var Debug : Node = get_tree().get_first_node_in_group("debug")
 @onready var Game : Node = get_tree().get_first_node_in_group("game")

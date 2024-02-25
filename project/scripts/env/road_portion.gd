@@ -9,7 +9,6 @@ const Goat : Resource = preload("res://prefabs/entities/goat.tscn")
 const Cloud : Resource = preload("res://prefabs/models/cloud.tscn")
 
 func _ready() -> void :
-	#var max_x = Road.get_node("").get_aabb()
 	var n_clouds : int = randi_range(min_clouds, max_clouds)
 	for i in range(n_clouds) :
 		var cloud : Node = Cloud.instantiate()

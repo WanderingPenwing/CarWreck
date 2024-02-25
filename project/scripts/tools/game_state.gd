@@ -12,6 +12,10 @@ const FULLSCREEN_DELAY : float = 0.5
 const DEATHIARY : Array = ["Above speed limit", "Under speed limit", "Child run out of the car",
 				"Car accident right", "Car accident left", "Fall asleep", "Isteria",
 				"Interupt Simon", "Can't trust technology", "The GOAT !!"]
+const BABY_ACTIVATION : float = 5
+const GPS_ACTIVATION : float = 12
+const GOAT_ACTIVATION : float = 30
+const RADIO_ACTIVATION : float = 10
 
 var volume : Dictionary = {
 	"master" : 50,
@@ -21,6 +25,7 @@ var volume : Dictionary = {
 var fullscreen : bool = false
 var last_fullscreen_toggle : float = 0
 var deathiary : Array = DEATHIARY.map(func (_txt : String) -> String : return '?')
+
 
 func _ready() -> void :
 	load_state()
