@@ -163,7 +163,6 @@ func activate_button() -> void :
 		return
 	button_was_activated = true
 	activate.emit(button_title)
-	print("button " + name + " activated")
 	SoundsManager.play_sound(bip, SoundsManager, "Sfx")
 	var tween : Tween = create_tween() # Creates a new tween
 	tween.tween_property(self, "scale", DEFAULT_SCALE, ANIMATION_TIME)
