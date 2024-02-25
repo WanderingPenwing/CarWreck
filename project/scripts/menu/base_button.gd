@@ -36,17 +36,17 @@ func _ready() -> void :
 
 func initialize() -> void :
 	Buttons = []
-	var all_buttons = get_tree().get_nodes_in_group("button")
+	var all_buttons : Array = get_tree().get_nodes_in_group("button")
 	
-	for button in all_buttons :
-		if not button.visible :
+	for button : Node in all_buttons :
+		if not button.is_visible_in_tree() :
 			continue
 		Buttons.append(button)
 	
 	var text : String = "Buttons : ["
 	for button in Buttons :
 		text += button.name + ", "
-	#print(text)
+	print(text)
 
 
 func update_next() -> void :
@@ -54,7 +54,7 @@ func update_next() -> void :
 	
 	if not next : # If not overidden, get next in tree
 		var i : int = 0
-		while i < len(Buttons) and Buttons[i] != self and not Buttons[i].visible:
+		while i < len(Buttons) and Buttons[i] != self :
 			i += 1
 		if i == len(Buttons) :
 			next = self
@@ -68,7 +68,7 @@ func update_previous() -> void :
 	
 	if not previous : # If not overidden, previous in tree
 		var i : int = 0
-		while i < len(Buttons) and Buttons[i] != self and not Buttons[i].visible:
+		while i < len(Buttons) and Buttons[i] != self:
 			i += 1
 		if i == len(Buttons) :
 			previous = self

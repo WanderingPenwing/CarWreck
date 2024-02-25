@@ -13,3 +13,4 @@ func display() -> void :
 func _on_back_activate(_name : String) -> void :
 	self.hide()
 	StartScreen.show()
+	GameState.save_state()
