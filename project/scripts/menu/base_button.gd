@@ -4,8 +4,8 @@ extends CenterContainer
 
 @export var button_title : String
 @export var custom_size : float = 250 # To change the width of the button
-@export var next : Node # To override which button is next (default is next in tree)
-@export var previous : Node # To override which button is next (default is previous in tree)
+@export var default_next : Node # To override which button is next (default is next in tree)
+@export var default_previous : Node # To override which button is next (default is previous in tree)
 
 const bip : Resource = preload("res://assets/sounds/sfx/menu/bip.wav")
 const boop : Resource = preload("res://assets/sounds/sfx/menu/select.wav")
@@ -23,6 +23,8 @@ var Buttons : Array[Node] = []
 var button_was_activated : bool = false # to activate only once for long inputs
 
 var initialized : bool = false
+var previous : Node
+var next : Node
 
 
 func _ready() -> void :
@@ -52,29 +54,35 @@ func initialize() -> void :
 func update_next() -> void :
 	initialize()
 	
-	if not next : # If not overidden, get next in tree
-		var i : int = 0
-		while i < len(Buttons) and Buttons[i] != self :
-			i += 1
-		if i == len(Buttons) :
-			next = self
-		else :
-			var next_button : int = (i + 1) % len(Buttons)
-			next = Buttons[next_button]
+	if default_next : 
+		next = default_next
+		return
+	
+	var i : int = 0
+	while i < len(Buttons) and Buttons[i] != self :
+		i += 1
+	if i == len(Buttons) :
+		next = self
+	else :
+		var next_button : int = (i + 1) % len(Buttons)
+		next = Buttons[next_button]
 
 
 func update_previous() -> void :
 	initialize()
 	
-	if not previous : # If not overidden, previous in tree
-		var i : int = 0
-		while i < len(Buttons) and Buttons[i] != self:
-			i += 1
-		if i == len(Buttons) :
-			previous = self
-		else :
-			var previous_button : int = (i - 1) % len(Buttons)
-			previous = Buttons[previous_button]
+	if default_previous : 
+		previous = default_previous
+		return
+	
+	var i : int = 0
+	while i < len(Buttons) and Buttons[i] != self:
+		i += 1
+	if i == len(Buttons) :
+		previous = self
+	else :
+		var previous_button : int = (i - 1) % len(Buttons)
+		previous = Buttons[previous_button]
 
 
 func _process(delta : float) -> void :
