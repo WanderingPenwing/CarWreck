@@ -68,7 +68,7 @@ custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 21
-text = "Game made for the PIZZA JAM using Godot
+text = "Game made for the PIZZA JAM using Godot, based around \"Baby on Board\"
 
 Code : Eliott Jvn and WanderingPenwing
 2D Assets : Eliott Jvn
