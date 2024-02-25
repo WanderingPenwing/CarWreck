@@ -9,9 +9,10 @@ const ENGINE_SOUND : Resource = preload("res://assets/sounds/sfx/car/engine.mp3"
 @export var Settings : Node
 @export var Credits : Node
 
+@onready var StartButton : Node = get_tree().get_first_node_in_group("start")
 
 func _ready() -> void :
-	get_tree().get_first_node_in_group("start").become_selected()
+	StartButton.become_selected()
 	get_tree().paused = true
 
 
@@ -29,17 +30,14 @@ func _on_quit_activate(_name : String) -> void :
 
 func _on_deathiary_activate(_name: String) -> void:
 	Deathiary.display()
-	self.hide()
 
 
 func _on_credits_activate(_name: String) -> void:
 	Credits.display()
-	self.hide()
 
 
 func _on_settings_activate(_name: String) -> void:
 	Settings.display()
-	self.hide()
 
 
 func start_engine() -> void :

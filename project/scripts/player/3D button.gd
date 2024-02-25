@@ -27,5 +27,4 @@ func _on_detection_input_event(_camera: Node, event: InputEvent, _position: Vect
 		return
 	if not(event.button_index == MOUSE_BUTTON_LEFT and event.is_pressed()) :
 		return
-	print(self.name)
 	clicked.emit()

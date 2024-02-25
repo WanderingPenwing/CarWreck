@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scripts/menu/base_button.gd" id="1_hcwsu"]
 [ext_resource type="Theme" uid="uid://cqr0axdb4bodp" path="res://assets/themes/base.tres" id="1_o81yr"]
 
-[node name="Base Button" type="CenterContainer"]
+[node name="Base Button" type="CenterContainer" groups=["base_button"]]
 offset_right = 40.0
 offset_bottom = 40.0
 size_flags_horizontal = 4

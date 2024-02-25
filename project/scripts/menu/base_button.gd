@@ -44,11 +44,6 @@ func initialize() -> void :
 		if not button.is_visible_in_tree() :
 			continue
 		Buttons.append(button)
-	
-	var text : String = "Buttons : ["
-	for button in Buttons :
-		text += button.name + ", "
-	print(text)
 
 
 func update_next() -> void :
@@ -104,14 +99,7 @@ func _process(delta : float) -> void :
 		return
 	
 	if Input.is_action_just_pressed("ui_accept") : # Click
-		if button_was_activated :
-			return
-		button_was_activated = true
-		activate.emit(button_title)
-		SoundsManager.play_sound(bip, SoundsManager, "Sfx")
-		var tween : Tween = create_tween() # Click animation
-		tween.tween_property(self, "scale", DEFAULT_SCALE, ANIMATION_TIME)
-		tween.tween_property(self, "scale", HOVER_SCALE, ANIMATION_TIME)
+		activate_button()
 		return
 	
 	button_was_activated = false
@@ -153,13 +141,7 @@ func become_unselected() -> void :
 
 
 func _on_button_pressed() -> void : # Mouse click
-	if disabled :
-		return
-	activate.emit(button_title)
-	SoundsManager.play_sound(bip, SoundsManager, "Sfx")
-	var tween : Tween = create_tween() # Creates a new tween
-	tween.tween_property(self, "scale", DEFAULT_SCALE, ANIMATION_TIME)
-	tween.tween_property(self, "scale", HOVER_SCALE, ANIMATION_TIME)
+	activate_button()
 
 
 
@@ -167,6 +149,22 @@ func _on_button_mouse_entered() -> void : # Mouse hover
 	if disabled :
 		return
 	become_selected()
+	initialize()
 	for button in Buttons :
 		if button != self :
 			button.become_unselected()
+
+
+
+func activate_button() -> void :
+	if disabled :
+		return
+	if button_was_activated :
+		return
+	button_was_activated = true
+	activate.emit(button_title)
+	print("button " + name + " activated")
+	SoundsManager.play_sound(bip, SoundsManager, "Sfx")
+	var tween : Tween = create_tween() # Creates a new tween
+	tween.tween_property(self, "scale", DEFAULT_SCALE, ANIMATION_TIME)
+	tween.tween_property(self, "scale", HOVER_SCALE, ANIMATION_TIME)

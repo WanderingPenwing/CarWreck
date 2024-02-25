@@ -22,9 +22,11 @@ func _ready() -> void :
 
 func display() -> void :
 	self.show()
+	StartScreen.hide()
 	Back.become_selected()
 
 
 func _on_back_activate(_name : String) -> void :
 	self.hide()
 	StartScreen.show()
+	Back.become_unselected()
